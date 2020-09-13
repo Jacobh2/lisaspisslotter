@@ -1,18 +1,21 @@
 {
-  "name": "lisaspisslotter",
-  "version": "1.0.0",
-  "private": true,
   "scripts": {
-    "start": "node ./src/bin/www",
-    "dev": "nodemon ./src/bin/www"
+    "start": "snowpack dev",
+    "build": "snowpack build",
+    "test": "jest",
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint": "prettier --check \"src/**/*.{js,jsx}\""
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.17.1",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
-    "nodemon": "^2.0.4",
-    "pug": "~3.0.0"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@snowpack/app-scripts-react": "^1.10.0",
+    "@testing-library/jest-dom": "^5.5.0",
+    "@testing-library/react": "^10.0.3",
+    "jest": "^26.2.2",
+    "prettier": "^2.0.5",
+    "snowpack": "^2.10.3"
   }
 }

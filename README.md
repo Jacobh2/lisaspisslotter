@@ -1,15 +1,29 @@
-# lisaspisslotter
-Scratch some really bad lottery tickets
+# New Project
 
-## Needed:
+> ✨ Bootstrapped with Create Snowpack App (CSA).
 
-- UI to show a lottery ticket. Scratching it should reviel a pize
-- Lottery ticket generator: Given a set of prizes, generate tickets with a X percentage of victory
-- Dynamic URLs that shows a new lottery ticket
-- Some sort of highscore / history tracking, so it is possible to go back to a winning ticket. Maybe enter your name to better track who's the winner?
+## Available Scripts
 
-## Start
+### npm start
 
-`docker-compose up --build` will start on port 3000 with nodemon for hot reloading.
+Runs the app in the development mode.
+Open http://localhost:8080 to view it in the browser.
 
-Then visit localhost:3000
+The page will reload if you make edits.
+You will also see any lint errors in the console.
+
+### npm test
+
+Launches the test runner in the interactive watch mode.
+See the section about running tests for more information.
+
+### npm run build
+
+Builds a static copy of your site to the `build/` folder.
+Your app is ready to be deployed!
+
+**For the best production performance:** Add a build bundler plugin like "@snowpack/plugin-webpack" or "@snowpack/plugin-parcel" to your `snowpack.config.json` config file.
+
+### Q: What about Eject?
+
+No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
