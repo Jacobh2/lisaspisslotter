@@ -3,7 +3,9 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Lisas Pisslotter' });
+  const won = req.query.won === "true";
+  console.log("User won:", won);
+  res.render('index', { title: 'Lisas Pisslotter', won: won ? "Wooohoo! You won!": "" });
 });
 
 module.exports = router;

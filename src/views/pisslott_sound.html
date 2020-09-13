@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Scratch It</title>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+  <link rel="stylesheet" href="/stylesheets/pisslott.css">
+
+  <style>
+    .columns {
+      margin-top: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    .column {
+      background-color: brown;
+      color: black;
+      border-radius: 10px;
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body >
+
+  <!-- Load sounds -->
+  <audio id="ny_lott">
+    <source src="/sounds/ny_lott.wav" type="audio/wav">
+  </audio>
+  <audio id="anton_skratt">
+    <source src="/sounds/anton_skratt.wav" type="audio/wav">
+  </audio>
+  <audio id="drivmedel_100_kr">
+      <source src="/sounds/drivmedel_100_kr.wav" type="audio/wav">
+  </audio>
+  <audio id="hamburgare_eller_baguette">
+      <source src="/sounds/hamburgare_eller_baguette.wav" type="audio/wav">
+  </audio>
+  <audio id="klipp_och_klistra">
+      <source src="/sounds/klipp_och_klistra.wav" type="audio/wav">
+  </audio>
+  <audio id="ohfan">
+      <source src="/sounds/ohfan.wav" type="audio/wav">
+  </audio>
+  <audio id="pest_eller_kolera">
+      <source src="/sounds/pest_eller_kolera.wav" type="audio/wav">
+  </audio>
+  <audio id="redan_samst">
+      <source src="/sounds/redan_samst.wav" type="audio/wav">
+  </audio>
+  <audio id="redbull">
+      <source src="/sounds/redbull.wav" type="audio/wav">
+  </audio>
+  <audio id="vinner_ingenting">
+      <source src="/sounds/vinner_ingenting.wav" type="audio/wav">
+  </audio>
+
+  <!-- GAME BOARD -->
+  <div id="gameBoard" style="background-color: green;">
+    <div class="columns is-mobile">
+      <div id="a0" class="tile"></div>
+      <div id="a1" class="tile"></div>
+      <div id="a2" class="tile"></div>
+    </div>
+  
+    <div class="columns is-mobile">
+      <div id="b0" class="tile"></div>
+      <div id="b1" class="tile"></div>
+      <div id="b2" class="tile"></div>
+    </div>
+  
+    <div class="columns is-mobile">
+      <div id="c0" class="tile"></div>
+      <div id="c1" class="tile"></div>
+      <div id="c2" class="tile"></div>
+    </div>
+  </div>
+
+
+  <script src="/javascripts/ScratchIt.min.js"></script>
+  <script src="/javascripts/pisslott_sound.js"></script>
+
+  <div class="overlay"></div>
+
+  <div class="footer">
+    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+  </div>
+  
+
+</body>
+
+
+</html>
