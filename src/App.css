@@ -1,6 +1,6 @@
 body {
-  height: 200wh;
   user-select: none;
+  background-color: rgb(237 223 1);
 }
 
 .grid {
@@ -10,12 +10,38 @@ body {
 
   justify-items: center;
   align-items: center;
+  position: relative;
+}
+
+.grid__overlay {
+  pointer-events: none;
+  z-index: 1;
+
+  position: absolute;
+  top: 0;
+  width: 310px;
+  height: 454px;
+
+  background-repeat: no-repeat;
+}
+
+.grid__frame {
+  padding-top: 103px;
 }
 
 .grid__row {
   overflow: hidden;
 
   display: flex;
+}
+
+.grid__row__special-tile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  height: 70px;
+  width: 100%;
 }
 
 .grid__tile {
@@ -29,8 +55,7 @@ body {
   width: 82px;
   height: 66px;
 
-  background-color: green;
-  
+  background-color: rgb(234 229 138 / 1);
 }
 
 .grid__tile__content {
@@ -44,7 +69,7 @@ body {
 }
 
 .grid__tile--revealed {
-  background: blue;
+  background-color: rgb(234 229 138 / 1);
 }
 
 .grid__tile--revealed canvas {
