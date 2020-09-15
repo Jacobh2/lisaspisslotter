@@ -22,9 +22,7 @@ function Tile({ tile }) {
 
     ScratchIt(ref.current, overlayImgUrl, brushImgUrl, onReveal, REVEAL_PERCENT);
     setHasScratchIt(true);
-  }, [tile.id]);
-
-  console.log('foooo');
+  }, [hasScratchIt, tile.id]);
 
   return (
     <div ref={ref} className={`grid__tile ${isRevealed ? 'grid__tile--revealed' : ''}`}>
