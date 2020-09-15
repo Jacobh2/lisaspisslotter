@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import ScratchIt from './ScratchIt.min.js';
 
 import brush from './images/brush.png';
-import klaver from './images/tile_klaver.png'
+import klaver from './images/tile_klaver.png';
 
 import './App.css';
 
