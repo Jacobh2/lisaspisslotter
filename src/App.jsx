@@ -9,21 +9,24 @@ import './App.css';
 
 const REVEAL_PERCENT = 50;
 
-function Tile({ tile, tileNr }) {
+function Tile({ tile, tileNr, onTileReveal }) {
   const ref = useRef();
   const [isRevealed, setIsRevealed] = useState(false);
   const [hasScratchIt, setHasScratchIt] = useState(false);
-
-  const onReveal = () => setIsRevealed(true);
 
   useEffect(() => {
     if (hasScratchIt) return;
     const overlayImgUrl = klaver;
     const brushImgUrl = brush;
 
-    ScratchIt(ref.current, overlayImgUrl, brushImgUrl, onReveal, REVEAL_PERCENT);
+    const onRevealInternal = () => {
+      setIsRevealed(true);
+      onTileReveal({ tileId: tile.id, tileNr });
+    };
+
+    ScratchIt(ref.current, overlayImgUrl, brushImgUrl, onRevealInternal, REVEAL_PERCENT);
     setHasScratchIt(true);
-  }, [hasScratchIt, tile.id]);
+  }, [hasScratchIt, tile.id, onTileReveal, tileNr]);
 
   return (
     <div ref={ref} className={`grid__tile grid__tile--${tileNr} ${isRevealed ? 'grid__tile--revealed' : ''}`}>
@@ -34,9 +37,16 @@ function Tile({ tile, tileNr }) {
   );
 }
 
-function Grid({ tiles }) {
+function Grid({ tiles, onTileReveal }) {
 
-  const tileItems = tiles.map((tile, i) => <Tile key={i} tileNr={i} tile={tile}></Tile>);
+  const tileItems = tiles.map((tile, i) => (
+    <Tile
+      key={i}
+      tileNr={i}
+      tile={tile}
+      onTileReveal={onTileReveal}
+    />
+  ));
 
   const firstRow = tileItems.slice(0, 3);
   const secondRow = tileItems.slice(2, 5);
@@ -68,9 +78,9 @@ function Grid({ tiles }) {
   );
 }
 
-function App({ tiles }) {
+function App({ tiles, onTileReveal }) {
   return (
-    <Grid tiles={tiles} />
+    <Grid tiles={tiles} onTileReveal={onTileReveal} />
   );
 }
 
