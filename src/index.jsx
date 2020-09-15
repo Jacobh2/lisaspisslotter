@@ -19,6 +19,9 @@ const tiles = [
   { id: 'j', icon: '', sound: '' },
 ];
 
+// Prevents accidental page update/edge drag causing scratches to fail
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
+
 ReactDOM.render(
   <React.StrictMode>
     <App tiles={tiles} />

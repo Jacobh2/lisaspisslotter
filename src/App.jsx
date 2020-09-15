@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ScratchIt from './ScratchIt.min.js';
 
-import brush from './images/brush_big.png';
+import brush from './images/brush.png';
 import klaver from './images/tile_klaver.png'
 
 import './App.css';
@@ -24,20 +24,42 @@ function Tile({ tile }) {
     setHasScratchIt(true);
   }, [tile.id]);
 
+  console.log('foooo');
+
   return (
-    <div ref={ref} className="grid__tile">
-      {isRevealed ? 'REVEALED' : null}
-      {tile.id}
+    <div ref={ref} className={`grid__tile ${isRevealed ? 'grid__tile--revealed' : ''}`}>
+      <span className="grid__tile__content">
+        {tile.id}
+      </span>
     </div>
   );
 }
 
 function Grid({ tiles }) {
+
+  const tileItems = tiles.map((tile, i) => <Tile key={i} tile={tile}></Tile>);
+
+  const firstRow = tileItems.slice(0, 3);
+  const secondRow = tileItems.slice(2, 5);
+  const thirdRow = tileItems.slice(6, 9);
+
+  console.assert(firstRow.length === 3, firstRow.length);
+  console.assert(secondRow.length === 3, secondRow.length);
+  console.assert(thirdRow.length === 3, thirdRow.length);
+
   return (
     <div className="grid">
       <img style={{ display: 'none' }} src={brush}></img>
       <img style={{ display: 'none' }} src={klaver}></img>
-      {tiles.map((tile, i) => <Tile key={i} tile={tile}></Tile>)}
+      <div className="grid__row">
+        {firstRow}
+      </div>
+      <div className="grid__row">
+        {secondRow}
+      </div>
+      <div className="grid__row">
+        {thirdRow}
+      </div>
     </div>
   );
 }

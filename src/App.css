@@ -1,21 +1,52 @@
+body {
+  height: 200wh;
+  user-select: none;
+}
 
 .grid {
 
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+
+  justify-items: center;
+  align-items: center;
 }
 
-.grid .grid__tile {
+.grid__row {
+  overflow: hidden;
+
+  display: flex;
+}
+
+.grid__tile {
+  position: relative;
   box-sizing: border-box;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 33%;
-  height: 60px;
-
+  width: 82px;
+  height: 66px;
 
   background-color: green;
   
+}
+
+.grid__tile__content {
+  pointer-events: none;
+}
+
+.grid__tile canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.grid__tile--revealed {
+  background: blue;
+}
+
+.grid__tile--revealed canvas {
+  display: none;
 }
