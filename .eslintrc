@@ -1,0 +1,57 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "globals": {
+    "self": true,
+    "describe": true,
+    "before": true,
+    "beforeEach": true,
+    "after": true,
+    "afterEach": true,
+    "it": true,
+    "postMessage": true,
+    "onmessage": true,
+    "expect": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "react-hooks"
+  ],
+  "rules": {
+    "comma-style": [
+      2,
+      "last"
+    ],
+    "linebreak-style": 2,
+    "no-undef": 2,
+    "strict": 0,
+    "semi": ["error", "always"],
+    "no-empty": ["error", { "allowEmptyCatch": true }],
+    "no-console": "off",
+    "no-unused-vars": ["error", { "args": "none" }],
+    "no-useless-escape": "off",
+    "no-extra-boolean-cast": "off",
+    "react/prop-types": 0,
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
+  }
+}
