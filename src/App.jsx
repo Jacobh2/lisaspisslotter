@@ -11,14 +11,17 @@ const REVEAL_PERCENT = 50;
 function Tile({ tile }) {
   const ref = useRef();
   const [isRevealed, setIsRevealed] = useState(false);
+  const [hasScratchIt, setHasScratchIt] = useState(false);
 
   const onReveal = () => setIsRevealed(true);
 
   useEffect(() => {
+    if (hasScratchIt) return;
     const overlayImgUrl = klaver;
     const brushImgUrl = brush;
 
     ScratchIt(ref.current, overlayImgUrl, brushImgUrl, onReveal, REVEAL_PERCENT);
+    setHasScratchIt(true);
   }, [tile.id]);
 
   return (
