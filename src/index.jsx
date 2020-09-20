@@ -4,9 +4,7 @@ import App from './App';
 import './index.css';
 
 import AudioPlayer from './AudioPlayer.js';
-
 import TicketGenerator from './TicketGenerator';
-
 import ScratchedState from './ScratchedState';
 
 
@@ -19,11 +17,18 @@ const state = new ScratchedState(audioPlayer);
 
 function onTileReveal({ tileId, tileNr, tileSound }) {
   const audioReference = audioPlayer.playById(tileSound);
-  state.onTileReveal(tileId, audioReference)
+  state.updateState(tileId, audioReference)
 
-  // TODO Maybe keep global state between tile reveals here
-  // Act on all tiles scratched
-  // Display different screen (React component) between win and lose
+  if(state.hasScratchedAll()){
+    // The game is finished!
+    if(state.hasWon()){
+      //TODO: Show a winning display (React component)
+      console.log("Congratz!");
+    } else {
+      //TODO: Show a losing display (React component)
+      console.log("Too bad!");
+    }
+  }
 }
 
 ReactDOM.render(

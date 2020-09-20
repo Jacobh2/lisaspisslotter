@@ -14,16 +14,21 @@ export default class ScratchedState {
         this.TOTAL_NUMBER_OF_TILES = 10;
     }
 
-    _checkIfWon() {
+    _setWon() {
         // We need 3 of the same thing to win
-        console.log("Scratched tiles:", this._state.scratchedTiles);
-        return Object.values(this._state.scratchedTiles).includes(3);
+        this._state.won = Object.values(this._state.scratchedTiles).includes(3);
     }
 
+    hasWon() {
+        return this._state.won;
+    }
 
-    onTileReveal(tileId, audioReference) {
+    hasScratchedAll(){
+        return this._state.numberOfScratchedTiles === this.TOTAL_NUMBER_OF_TILES;
+    }
+
+    updateState(tileId, audioReference) {
         this._state.numberOfScratchedTiles++;
-        console.log("Have scratched", this._state.numberOfScratchedTiles, "tiles");
 
         // Add the scratched tile to the state
         if (tileId in this._state.scratchedTiles) {
@@ -33,28 +38,23 @@ export default class ScratchedState {
         }
 
         // Check if we've won
-        this._state.won = this._checkIfWon();
+        this._setWon();
 
-        if (this._state.won && !this._state.winningSoundPlayed) {
-            console.log("Play win sound!!");
+        const audioPlayer = this.audioPlayer;
+
+        if (this.hasWon() && !this._state.winningSoundPlayed) {
             this._state.winningSoundPlayed = true;
             audioReference.addEventListener("ended", function(){
                 audioReference.currentTime = 0;
-                this.audioPlayer.playWin();
-                console.log("Win sound should have been played");
+                audioPlayer.playWin();
            });
         }
 
-        if (this._state.numberOfScratchedTiles === this.TOTAL_NUMBER_OF_TILES) {
-            // We're done! Check if we lost
-            if (!this._state.won) {
-                console.log("Play lose sound!!");
-                audioReference.addEventListener("ended", function(){
-                    audioReference.currentTime = 0;
-                    this.audioPlayer.playLost();
-                    console.log("Lose sound should have been played");
-               });
-            }
+        if (this.hasScratchedAll() && !this.hasWon()) {
+            audioReference.addEventListener("ended", function(){
+                audioReference.currentTime = 0;
+                audioPlayer.playLost();
+            });
         }
     }
 }
