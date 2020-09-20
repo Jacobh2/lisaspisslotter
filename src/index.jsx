@@ -19,9 +19,9 @@ function onTileReveal({ tileId, tileNr, tileSound }) {
   const audioReference = audioPlayer.playById(tileSound);
   state.updateState(tileId, audioReference)
 
-  if(state.hasScratchedAll()){
+  if (state.hasScratchedAll()) {
     // The game is finished!
-    if(state.hasWon()){
+    if (state.hasWon()) {
       //TODO: Show a winning display (React component)
       console.log("Congratz!");
     } else {
@@ -31,12 +31,24 @@ function onTileReveal({ tileId, tileNr, tileSound }) {
   }
 }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App tiles={ticketGenerator.getGameBoardByUrl()} onTileReveal={onTileReveal} />
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
+
+if (!window.location.pathname.startsWith('/ticket/')) {
+  ReactDOM.render(
+    <React.StrictMode>
+      <h1>Go to /tickets/abc123 for a winning ticket!</h1>
+    </React.StrictMode>,
+    document.getElementById('root'),
+  );
+} else {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App tiles={ticketGenerator.getGameBoardByUrl()} onTileReveal={onTileReveal} />
+    </React.StrictMode>,
+    document.getElementById('root'),
+  );
+}
+
+
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
 // Learn more: https://www.snowpack.dev/#hot-module-replacement

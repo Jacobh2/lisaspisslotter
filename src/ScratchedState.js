@@ -3,7 +3,6 @@
 export default class ScratchedState {
 
     constructor(audioPlayer) {
-        console.log("Player:", audioPlayer);
         this.audioPlayer = audioPlayer;
         this._state = {
             numberOfScratchedTiles: 0,
