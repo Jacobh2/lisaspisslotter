@@ -5,30 +5,19 @@ import './index.css';
 
 import AudioPlayer from './AudioPlayer.js';
 
-// TODO Get correct ticket based on URL or something
-// import tickets from  './generated-tickets';
+import TicketGenerator from './TicketGenerator';
 
-const tiles = [
-  { id: 'beer', icon: '', sound: '' },
-  { id: 'cheers', icon: '', sound: '' },
-  { id: 'c', icon: '', sound: '' },
-  { id: 'd', icon: '', sound: '' },
-  { id: 'e', icon: '', sound: '' },
-  { id: 'f', icon: '', sound: '' },
-  { id: 'g', icon: '', sound: '' },
-  { id: 'h', icon: '', sound: '' },
-  { id: 'i', icon: '', sound: '' },
-  { id: 'j', icon: '', sound: '' },
-];
 
 // Prevents accidental page update/edge drag causing scratches to fail
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
 
 const audioPlayer = new AudioPlayer();
+const ticketGenerator = new TicketGenerator();
 
-function onTileReveal({ tile, tileNr }) {
+function onTileReveal({ tileId, tileNr, tileSound }) {
+  console.log("tileId:", tileId, "nr:", tileNr, "sound:", tileSound);
   // TODO Play audio
-  audioPlayer.playRandom();
+  audioPlayer.playById(tileSound);
 
   // TODO Maybe keep global state between tile reveals here
   // Act on all tiles scratched
@@ -37,7 +26,7 @@ function onTileReveal({ tile, tileNr }) {
 
 ReactDOM.render(
   <React.StrictMode>
-    <App tiles={tiles} onTileReveal={onTileReveal} />
+    <App tiles={ticketGenerator.getGameBoardByUrl()} onTileReveal={onTileReveal} />
   </React.StrictMode>,
   document.getElementById('root'),
 );
