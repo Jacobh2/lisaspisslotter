@@ -21,12 +21,12 @@ function Tile({ tile, tileNr, onTileReveal }) {
 
     const onRevealInternal = () => {
       setIsRevealed(true);
-      onTileReveal({ tileId: tile.id, tileNr });
+      onTileReveal({ tileId: tile.id, tileNr, tileSound: tile.sound });
     };
 
     ScratchIt(ref.current, overlayImgUrl, brushImgUrl, onRevealInternal, REVEAL_PERCENT);
     setHasScratchIt(true);
-  }, [hasScratchIt, tile.id, onTileReveal, tileNr]);
+  }, [hasScratchIt, tile.id, onTileReveal, tileNr, tile.sound]);
 
   return (
     <div ref={ref} className={`grid__tile grid__tile--${tileNr} ${isRevealed ? 'grid__tile--revealed' : ''}`}>
@@ -49,9 +49,9 @@ function Grid({ tiles, onTileReveal }) {
   ));
 
   const firstRow = tileItems.slice(0, 3);
-  const secondRow = tileItems.slice(2, 5);
+  const secondRow = tileItems.slice(3, 6);
   const thirdRow = tileItems.slice(6, 9);
-  const specialTile = tileItems[tileItems.length - 1];
+  const specialTile = tileItems[9];
 
   console.assert(firstRow.length === 3, firstRow.length);
   console.assert(secondRow.length === 3, secondRow.length);

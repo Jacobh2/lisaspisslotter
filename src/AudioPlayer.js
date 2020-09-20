@@ -31,4 +31,16 @@ export default class AudioPlayer {
     const audio = list[0];
     audio.play();
   }
+
+  playById(id) {
+    if (id === 'random') {
+      this.playRandom();
+    } else {
+      this._sounds[id].play();
+    }
+  }
+
+  playLost() {
+    this._sounds.vinner_ingenting.play();
+  }
 }
