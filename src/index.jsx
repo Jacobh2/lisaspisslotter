@@ -7,15 +7,19 @@ import AudioPlayer from './AudioPlayer.js';
 
 import TicketGenerator from './TicketGenerator';
 
+import ScratchedState from './ScratchedState';
+
 
 // Prevents accidental page update/edge drag causing scratches to fail
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
 
 const audioPlayer = new AudioPlayer();
 const ticketGenerator = new TicketGenerator();
+const state = new ScratchedState(audioPlayer);
 
 function onTileReveal({ tileId, tileNr, tileSound }) {
-  audioPlayer.playById(tileSound);
+  const audioReference = audioPlayer.playById(tileSound);
+  state.onTileReveal(tileId, audioReference)
 
   // TODO Maybe keep global state between tile reveals here
   // Act on all tiles scratched
