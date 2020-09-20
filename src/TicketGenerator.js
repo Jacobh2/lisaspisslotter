@@ -15,6 +15,11 @@ import multiply10 from './images/tiles/multiply_10.png';
 export default class TicketGenerator {
 
   constructor() {
+    // This is a list of IDs that will yield a winning ticket!
+    // It is controlled by the path from window.location
+    this._winning_ids = [
+      'abc123', 'def456', 'ghi789'
+    ];
     this._numberOfLosingTiles = 4;
     this._tiles = {
       beer: { id: 'beer', icon: beer, sound: 'random' },
@@ -81,7 +86,7 @@ export default class TicketGenerator {
 
   getGameBoardByUrl() {
     const path = window.location.pathname;
-    if (path.includes('win')) {
+    if (this._winning_ids.includes(path.slice(8))) {
       return this._generateBoard(true);
     }
     return this._generateBoard(false);
