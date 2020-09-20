@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ScratchIt from './ScratchIt.min.js';
 
-import brush from './images/brush.png';
-import klaver from './images/tile_klaver.png';
-import frame from './images/trisslott_cutout.png';
+import brush from './public/images/brush.png';
+import klaver from './public/images/tile_klaver.webp';
+import frame from './public/images/trisslott_cutout.webp';
 
 import './App.css';
 
