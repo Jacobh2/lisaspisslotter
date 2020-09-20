@@ -34,10 +34,8 @@ export default class AudioPlayer {
 
   playById(id) {
     if (id === 'random') {
-      console.log("Will play something random");
       this.playRandom();
     } else {
-      console.log("Will play", id);
       this._sounds[id].play();
     }
   }

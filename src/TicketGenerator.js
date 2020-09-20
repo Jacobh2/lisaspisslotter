@@ -35,7 +35,6 @@ export default class TicketGenerator {
   getExtra() {
     const availableExtra = [multiply1, multiply2, multiply5, multiply10];
     const times = this.shuffle(availableExtra)[0];
-    console.log('Extra is:', times);
     return { id: 'multiply', icon: times, sound: 'anton_skratt' };
   }
 
@@ -77,18 +76,14 @@ export default class TicketGenerator {
     // Add extra tile at the end
     shuffledGameBoard.push(this.getExtra());
 
-    console.log('Board:', shuffledGameBoard);
     return shuffledGameBoard;
   }
 
   getGameBoardByUrl() {
     const path = window.location.pathname;
-    console.log('Path:', path);
     if (path.includes('win')) {
-      console.log('Will generate winning board');
       return this.generateBoard(true);
     }
-    console.log('Will generate losing board');
     return this.generateBoard(false);
   }
 

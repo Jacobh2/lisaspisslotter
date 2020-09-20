@@ -15,8 +15,6 @@ const audioPlayer = new AudioPlayer();
 const ticketGenerator = new TicketGenerator();
 
 function onTileReveal({ tileId, tileNr, tileSound }) {
-  console.log("tileId:", tileId, "nr:", tileNr, "sound:", tileSound);
-  // TODO Play audio
   audioPlayer.playById(tileSound);
 
   // TODO Maybe keep global state between tile reveals here
