@@ -28,41 +28,41 @@ export default class TicketGenerator {
     };
   }
 
-  shuffle(arrayToShuffle) {
+  _shuffle(arrayToShuffle) {
     return arrayToShuffle.sort(() => 0.5 - Math.random());
   }
 
-  getExtra() {
+  _getExtra() {
     const availableExtra = [multiply1, multiply2, multiply5, multiply10];
-    const times = this.shuffle(availableExtra)[0];
+    const times = this._shuffle(availableExtra)[0];
     return { id: 'multiply', icon: times, sound: 'anton_skratt' };
   }
 
-  getRandom(selectFrom) {
+  _getRandom(selectFrom) {
     // Get a random tile
     if (selectFrom === undefined) {
       selectFrom = Object.values(this._tiles);
     }
-    return this.shuffle(selectFrom)[0];
+    return this._shuffle(selectFrom)[0];
   }
 
-  getAllTilesExcept(selectedTile) {
+  _getAllTilesExcept(selectedTile) {
     const allTilesExceptSelected = Object.assign({}, this._tiles);
     delete allTilesExceptSelected[selectedTile.id];
     return Object.values(allTilesExceptSelected);
   }
 
-  generateBoard(winning) {
+  _generateBoard(winning) {
     const gameBoard = [];
 
-    const selectedTile = this.getRandom();
+    const selectedTile = this._getRandom();
     // Add winning tile 3 tiles if 'winning', else 2 times
     const addAmountWinning = winning ? 3 : 2;
     for (let i = 0; i < addAmountWinning; i++) {
       gameBoard.push(selectedTile);
     }
 
-    const allTilesExceptSelected = this.getAllTilesExcept(selectedTile);
+    const allTilesExceptSelected = this._getAllTilesExcept(selectedTile);
     const losingTiles = allTilesExceptSelected.slice(0, this._numberOfLosingTiles);
     // Add the losing tile 6 times (9 - 3) if 'winning', else 7
     const addAmountLosing = winning ? 6 : 7;
@@ -71,10 +71,10 @@ export default class TicketGenerator {
     }
 
     // Shuffle the game board!
-    const shuffledGameBoard = this.shuffle(gameBoard);
+    const shuffledGameBoard = this._shuffle(gameBoard);
 
     // Add extra tile at the end
-    shuffledGameBoard.push(this.getExtra());
+    shuffledGameBoard.push(this._getExtra());
 
     return shuffledGameBoard;
   }
@@ -82,13 +82,9 @@ export default class TicketGenerator {
   getGameBoardByUrl() {
     const path = window.location.pathname;
     if (path.includes('win')) {
-      return this.generateBoard(true);
+      return this._generateBoard(true);
     }
-    return this.generateBoard(false);
-  }
-
-  getTileById(id) {
-    return this._tiles[id];
+    return this._generateBoard(false);
   }
 
 }

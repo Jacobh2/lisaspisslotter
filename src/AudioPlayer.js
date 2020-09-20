@@ -8,6 +8,7 @@ import drivmedel_100_kr from './sounds/drivmedel_100_kr.wav';
 import klipp_och_klistra from './sounds/klipp_och_klistra.wav';
 import redan_samst from './sounds/redan_samst.wav';
 import vinner_ingenting from './sounds/vinner_ingenting.wav';
+import win from './sounds/win.wav';
 
 export default class AudioPlayer {
 
@@ -23,6 +24,7 @@ export default class AudioPlayer {
       klipp_och_klistra: new Audio(klipp_och_klistra),
       redan_samst: new Audio(redan_samst),
       vinner_ingenting: new Audio(vinner_ingenting),
+      win: new Audio(win),
     };
   }
 
@@ -30,17 +32,26 @@ export default class AudioPlayer {
     const list = Object.values(this._sounds).sort(() => 0.5 - Math.random());
     const audio = list[0];
     audio.play();
+    return audio;
   }
 
   playById(id) {
     if (id === 'random') {
-      this.playRandom();
+      return this.playRandom();
     } else {
-      this._sounds[id].play();
+      const audio = this._sounds[id];
+      audio.play();
+      return audio;
     }
+  }
+
+  playWin() {
+    this._sounds.win.play();
+    return this._sounds.win;
   }
 
   playLost() {
     this._sounds.vinner_ingenting.play();
+    return this._sounds.vinner_ingenting;
   }
 }
