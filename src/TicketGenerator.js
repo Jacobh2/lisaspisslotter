@@ -1,15 +1,15 @@
-import beer from './public/icons/beer.png';
-import burger from './public/icons/burger.png';
-import cocktail from './public/icons/cocktail.png';
-import key from './public/icons/key.png';
-import wine from './public/icons/wine.png';
-import speech from './public/icons/speech.png';
-import champange from './public/icons/champange.png';
-import newTicket from './public/icons/new.png';
-import multiply1 from './public/icons/multiply_1.png';
-import multiply2 from './public/icons/multiply_2.png';
-import multiply5 from './public/icons/multiply_5.png';
-import multiply10 from './public/icons/multiply_10.png';
+import beer from './public/icons/beer.webp';
+import burger from './public/icons/burger.webp';
+import cocktail from './public/icons/cocktail.webp';
+import key from './public/icons/key.webp';
+import wine from './public/icons/wine.webp';
+import speech from './public/icons/speech.webp';
+import champange from './public/icons/champange.webp';
+import newTicket from './public/icons/new.webp';
+import multiply1 from './public/icons/multiply_1.webp';
+import multiply2 from './public/icons/multiply_2.webp';
+import multiply5 from './public/icons/multiply_5.webp';
+import multiply10 from './public/icons/multiply_10.webp';
 
 
 export default class TicketGenerator {
