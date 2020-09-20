@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 
+import AudioPlayer from './AudioPlayer.js';
+
 // TODO Get correct ticket based on URL or something
 // import tickets from  './generated-tickets';
 
@@ -22,9 +24,20 @@ const tiles = [
 // Prevents accidental page update/edge drag causing scratches to fail
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
 
+const audioPlayer = new AudioPlayer();
+
+function onTileReveal({ tile, tileNr }) {
+  // TODO Play audio
+  audioPlayer.playRandom();
+
+  // TODO Maybe keep global state between tile reveals here
+  // Act on all tiles scratched
+  // Display different screen (React component) between win and lose
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <App tiles={tiles} />
+    <App tiles={tiles} onTileReveal={onTileReveal} />
   </React.StrictMode>,
   document.getElementById('root'),
 );
