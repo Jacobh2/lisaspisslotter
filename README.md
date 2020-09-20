@@ -27,3 +27,16 @@ Your app is ready to be deployed!
 ### Q: What about Eject?
 
 No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+
+# TODO
+
+## Frontend
+- [ ] Start using icons instead of text in tiles
+- [ ] Have start page / landing page
+- [ ] Winning / losing page
+- [ ] Scratch also the "don't scratch this square" thing, and then trigger a instant lose
+
+## Backend
+- [ ] Other way of handling winning IDs?
+- [ ] Compress sounds to get better UX on phone/slower internet 
+- [x] Add cutout for "don't scratch this square" thing

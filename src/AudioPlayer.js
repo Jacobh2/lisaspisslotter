@@ -1,14 +1,14 @@
-import ohfan from './sounds/ohfan.wav';
-import anton_skratt from './sounds/anton_skratt.wav';
-import hamburgare_eller_baguette from './sounds/hamburgare_eller_baguette.wav';
-import ny_lott from './sounds/ny_lott.wav';
-import pest_eller_kolera from './sounds/pest_eller_kolera.wav';
-import redbull from './sounds/redbull.wav';
-import drivmedel_100_kr from './sounds/drivmedel_100_kr.wav';
-import klipp_och_klistra from './sounds/klipp_och_klistra.wav';
-import redan_samst from './sounds/redan_samst.wav';
-import vinner_ingenting from './sounds/vinner_ingenting.wav';
-import win from './sounds/win.wav';
+import ohfan from './public/sounds/ohfan.wav';
+import anton_skratt from './public/sounds/anton_skratt.wav';
+import hamburgare_eller_baguette from './public/sounds/hamburgare_eller_baguette.wav';
+import ny_lott from './public/sounds/ny_lott.wav';
+import pest_eller_kolera from './public/sounds/pest_eller_kolera.wav';
+import redbull from './public/sounds/redbull.wav';
+import drivmedel_100_kr from './public/sounds/drivmedel_100_kr.wav';
+import klipp_och_klistra from './public/sounds/klipp_och_klistra.wav';
+import redan_samst from './public/sounds/redan_samst.wav';
+import vinner_ingenting from './public/sounds/vinner_ingenting.wav';
+import win from './public/sounds/win.wav';
 
 export default class AudioPlayer {
 

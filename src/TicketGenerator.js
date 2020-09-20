@@ -1,15 +1,15 @@
-import beer from './images/tiles/beer.png';
-import burger from './images/tiles/burger.png';
-import cocktail from './images/tiles/cocktail.png';
-import key from './images/tiles/key.png';
-import wine from './images/tiles/wine.png';
-import speech from './images/tiles/speech.png';
-import champange from './images/tiles/champange.png';
-import newTicket from './images/tiles/new.png';
-import multiply1 from './images/tiles/multiply_1.png';
-import multiply2 from './images/tiles/multiply_2.png';
-import multiply5 from './images/tiles/multiply_5.png';
-import multiply10 from './images/tiles/multiply_10.png';
+import beer from './public/icons/beer.png';
+import burger from './public/icons/burger.png';
+import cocktail from './public/icons/cocktail.png';
+import key from './public/icons/key.png';
+import wine from './public/icons/wine.png';
+import speech from './public/icons/speech.png';
+import champange from './public/icons/champange.png';
+import newTicket from './public/icons/new.png';
+import multiply1 from './public/icons/multiply_1.png';
+import multiply2 from './public/icons/multiply_2.png';
+import multiply5 from './public/icons/multiply_5.png';
+import multiply10 from './public/icons/multiply_10.png';
 
 
 export default class TicketGenerator {
