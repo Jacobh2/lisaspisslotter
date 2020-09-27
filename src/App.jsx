@@ -9,6 +9,27 @@ import './App.css';
 
 const REVEAL_PERCENT = 50;
 
+function getTileWinDescription(prizeId) {
+  return {
+
+  }[prizeId] || 'UNKNOWN: ' + prizeId;
+}
+
+function TicketMessage({ state }) {
+
+  let text = 'Keep scratchin\'';
+  if (state.hasWon) text = `🤩 ${getTileWinDescription(state.prize)} 🤩`;
+  if (state.hasLost) text = 'Det blev sämst igen!';
+
+  return (
+    <div className="ticket-message">
+      <span className="ticket-message__text">
+        {text}
+      </span>
+    </div>
+  );
+}
+
 function Tile({ tile, tileNr, onTileReveal }) {
   const ref = useRef();
   const [isRevealed, setIsRevealed] = useState(false);
@@ -78,9 +99,20 @@ function Grid({ tiles, onTileReveal }) {
   );
 }
 
-function App({ tiles, onTileReveal }) {
+function App({ tiles, store, onTileReveal }) {
+  const [state, setState] = useState(store.getState());
+
+  useEffect(() => {
+    const fn = () => setState(store.getState());
+    store.onUpdate(fn);
+    return () => store.offUpdate(fn);
+  }, [store]);
+
   return (
-    <Grid tiles={tiles} onTileReveal={onTileReveal} />
+    <div className="app">
+      <TicketMessage state={state} />
+      <Grid store={store} tiles={tiles} onTileReveal={onTileReveal} />
+    </div>
   );
 }
 

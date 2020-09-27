@@ -31,9 +31,9 @@ No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
 # TODO
 
 ## Frontend
-- [ ] Start using icons instead of text in tiles
+- [x] Start using icons instead of text in tiles
 - [ ] Have start page / landing page
-- [ ] Winning / losing page
+- [x] Winning / losing page
 - [ ] Scratch also the "don't scratch this square" thing, and then trigger a instant lose
 
 ## Backend

@@ -1,4 +1,9 @@
-
+function getPrize({ scratchedTiles }) {
+  const tileIds = Object.keys(scratchedTiles);
+  const tileIdsWithThreeMatches = tileIds.filter(id => scratchedTiles[id] === 3);
+  console.assert(tileIdsWithThreeMatches.length <= 1, scratchedTiles);
+  return tileIdsWithThreeMatches[0];
+}
 
 export default class ScratchedState {
   
@@ -11,18 +16,22 @@ export default class ScratchedState {
       won: false
     };
     this.TOTAL_NUMBER_OF_TILES = 10;
+
+    this._callbacks = new Set();
   }
   
-  _setWon() {
-    // We need 3 of the same thing to win
-    this._state.won = Object.values(this._state.scratchedTiles).includes(3);
+  _hasWon() {
+    return Object.values(this._state.scratchedTiles).includes(3);
   }
   
-  hasWon() {
-    return this._state.won;
+  _hasLost() {
+    return (
+      this._hasScratchedAll() &&
+      !this._hasWon()
+    );
   }
   
-  hasScratchedAll(){
+  _hasScratchedAll(){
     return this._state.numberOfScratchedTiles === this.TOTAL_NUMBER_OF_TILES;
   }
   
@@ -36,12 +45,9 @@ export default class ScratchedState {
       this._state.scratchedTiles[tileId] = 1;
     }
     
-    // Check if we've won
-    this._setWon();
-    
     const audioPlayer = this.audioPlayer;
     
-    if (this.hasWon() && !this._state.winningSoundPlayed) {
+    if (this._hasWon() && !this._state.winningSoundPlayed) {
       this._state.winningSoundPlayed = true;
       audioReference.addEventListener("ended", function(){
         audioReference.currentTime = 0;
@@ -49,11 +55,29 @@ export default class ScratchedState {
       });
     }
     
-    if (this.hasScratchedAll() && !this.hasWon()) {
+    if (this._hasLost()) {
       audioReference.addEventListener("ended", function(){
         audioReference.currentTime = 0;
         audioPlayer.playLost();
       });
     }
+
+    this._callbacks.forEach(fn => fn());
+  }
+
+  onUpdate(fn) {
+    this._callbacks.add(fn);
+  }
+
+  offUpdate(fn) {
+    this._callbacks.delete(fn);
+  }
+
+  getState() {
+    return {
+      hasWon: this._hasWon(),
+      hasLost: this._hasLost(),
+      prize: getPrize(this._state)
+    };
   }
 }

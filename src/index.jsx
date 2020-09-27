@@ -19,9 +19,9 @@ function onTileReveal({ tileId, tileNr, tileSound }) {
   const audioReference = audioPlayer.playById(tileSound);
   store.updateState(tileId, audioReference)
 
-  if (store.hasScratchedAll()) {
+  if (store._hasScratchedAll()) {
     // The game is finished!
-    if (store.hasWon()) {
+    if (store._hasWon()) {
       //TODO: Show a winning display (React component)
       console.log("Congratz!");
     } else {
@@ -42,7 +42,7 @@ if (!window.location.pathname.startsWith('/ticket/')) {
 } else {
   ReactDOM.render(
     <React.StrictMode>
-      <App tiles={ticketGenerator.getGameBoardByUrl()} onTileReveal={onTileReveal} />
+      <App store={store} tiles={ticketGenerator.getGameBoardByUrl()} onTileReveal={onTileReveal} />
     </React.StrictMode>,
     document.getElementById('root'),
   );
