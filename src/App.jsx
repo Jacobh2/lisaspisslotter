@@ -11,14 +11,14 @@ const REVEAL_PERCENT = 50;
 
 function getTileWinDescription(prizeId) {
   return {
-
+    'champagne': '🍾🍾🍾 Champagne 🥂🥂🥂'
   }[prizeId] || 'UNKNOWN: ' + prizeId;
 }
 
 function TicketMessage({ state }) {
 
   let text = 'Keep scratchin\'';
-  if (state.hasWon) text = `🤩 ${getTileWinDescription(state.prize)} 🤩`;
+  if (state.hasWon) text = getTileWinDescription(state.prize);
   if (state.hasLost) text = 'Det blev sämst igen!';
 
   return (
