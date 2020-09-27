@@ -4,7 +4,7 @@ import cocktail from './public/icons/cocktail.webp';
 import key from './public/icons/key.webp';
 import wine from './public/icons/wine.webp';
 import speech from './public/icons/speech.webp';
-import champange from './public/icons/champange.webp';
+import champagne from './public/icons/champagne.webp';
 import newTicket from './public/icons/new.webp';
 import multiply1 from './public/icons/multiply_1.webp';
 import multiply2 from './public/icons/multiply_2.webp';
@@ -28,7 +28,7 @@ export default class TicketGenerator {
       key: { id: 'key', icon: key, sound: 'drivmedel_100_kr' },
       wine: { id: 'wine', icon: wine, sound: 'ohfan' },
       speech: { id: 'speech', icon: speech, sound: 'pest_eller_kolera' },
-      champange: { id: 'champange', icon: champange, sound: 'redan_samst' },
+      champagne: { id: 'champagne', icon: champagne, sound: 'redan_samst' },
       new: { id: 'new', icon: newTicket, sound: 'ny_lott' },
     };
   }
