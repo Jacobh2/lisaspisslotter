@@ -5,7 +5,7 @@ import './index.css';
 
 import AudioPlayer from './AudioPlayer.js';
 import TicketGenerator from './TicketGenerator';
-import ScratchedState from './ScratchedState';
+import ScratchedStore from './ScratchedStore';
 
 
 // Prevents accidental page update/edge drag causing scratches to fail
@@ -13,15 +13,15 @@ document.addEventListener('touchmove', function (e) { e.preventDefault(); }, { p
 
 const audioPlayer = new AudioPlayer();
 const ticketGenerator = new TicketGenerator();
-const state = new ScratchedState(audioPlayer);
+const store = new ScratchedStore(audioPlayer);
 
 function onTileReveal({ tileId, tileNr, tileSound }) {
   const audioReference = audioPlayer.playById(tileSound);
-  state.updateState(tileId, audioReference)
+  store.updateState(tileId, audioReference)
 
-  if (state.hasScratchedAll()) {
+  if (store.hasScratchedAll()) {
     // The game is finished!
-    if (state.hasWon()) {
+    if (store.hasWon()) {
       //TODO: Show a winning display (React component)
       console.log("Congratz!");
     } else {
