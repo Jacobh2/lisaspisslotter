@@ -31,7 +31,7 @@ function Tile({ tile, tileNr, onTileReveal }) {
   return (
     <div ref={ref} className={`grid__tile grid__tile--${tileNr} ${isRevealed ? 'grid__tile--revealed' : ''}`}>
       <span className="grid__tile__content">
-        {tile.id}
+        <span className={`grid__tile__content__icon`} style={{ backgroundImage: `url(${tile.icon})` }}></span>
       </span>
     </div>
   );
