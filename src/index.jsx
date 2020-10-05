@@ -31,18 +31,17 @@ function onTileReveal({ tileId, tileNr, tileSound }) {
   }
 }
 
-
-if (!window.location.pathname.startsWith('/ticket/')) {
+if (!window.location.hash.startsWith('#ticket/')) {
   ReactDOM.render(
     <React.StrictMode>
-      <h1>Go to /tickets/abc123 for a winning ticket!</h1>
+      <h1>Go to #ticket/abc123 for a winning ticket!</h1>
     </React.StrictMode>,
     document.getElementById('root'),
   );
 } else {
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} tiles={ticketGenerator.getGameBoardByUrl()} onTileReveal={onTileReveal} />
+      <App store={store} tiles={ticketGenerator.getGameBoardByHash()} onTileReveal={onTileReveal} />
     </React.StrictMode>,
     document.getElementById('root'),
   );

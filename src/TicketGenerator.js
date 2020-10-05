@@ -84,8 +84,8 @@ export default class TicketGenerator {
     return shuffledGameBoard;
   }
 
-  getGameBoardByUrl() {
-    const path = window.location.pathname;
+  getGameBoardByHash() {
+    const path = window.location.hash;
     if (this._winning_ids.includes(path.slice(8))) {
       return this._generateBoard(true);
     }

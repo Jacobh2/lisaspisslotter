@@ -33,12 +33,22 @@ No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
 ## Frontend
 - [x] Start using icons instead of text in tiles
 - [ ] Have start page / landing page
+  - Will always yield a losing ticket
 - [x] Winning / losing page
 - [ ] Scratch also the "don't scratch this square" thing, and then trigger a instant lose
+- [ ] Don't show icons until everything is loaded
+- [ ] Change favicon
+- [ ] Update HTML title
 
 ## Backend
 - [ ] Other way of handling winning IDs?
-  - reach router
-- [ ] Rename state to store
+  - Be able to give a specific price
+- [x] Rename state to store
 - [x] Compress sounds to get better UX on phone/slower internet 
 - [x] Add cutout for "don't scratch this square" thing
+- [ ] Create proper winning list
+  - Lots of beer
+  - VIP ticket
+  - Something with a hat
+- [ ] Photo edit ticket to say correct years under 30 & bottom text to "lisa lisa lisa"
+
