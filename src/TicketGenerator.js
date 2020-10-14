@@ -4,9 +4,6 @@ export default class TicketGenerator {
   constructor() {
     // This is a list of IDs that will yield a winning ticket!
     // It is controlled by the path from window.location
-    this._winning_ids = [
-      'abc123', 'def456', 'ghi789'
-    ];
     this._numberOfLosingTiles = 4;
     this._tiles = {
       beer: { id: 'beer', sound: 'random' },
@@ -20,6 +17,13 @@ export default class TicketGenerator {
       speech: { id: 'speech', sound: 'pest_eller_kolera' },
       champagne: { id: 'champagne', sound: 'redan_samst' },
       new: { id: 'new', sound: 'ny_lott' },
+    };
+    this._winning_ids = {
+      'abc123': [{"id":"beer2","sound":"klipp_och_klistra"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"beer3","sound":"random"},{"id":"burger","sound":"hamburgare_eller_baguette"},{"id":"beer","sound":"random"},{"id":"beer","sound":"random"},{"id":"vip","sound":"vinner_ingenting"},{"id":"beer","sound":"random"},{"id":"beer3","sound":"random"},{"id":"multiply10","sound":"anton_skratt"}],
+      'def456': [{"id":"burger","sound":"hamburgare_eller_baguette"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"beer","sound":"random"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"beer3","sound":"random"},{"id":"beer","sound":"random"},{"id":"beer3","sound":"random"},{"id":"vip","sound":"vinner_ingenting"},{"id":"multiply10","sound":"anton_skratt"}],
+      'ghi789': [{"id":"vip","sound":"vinner_ingenting"},{"id":"beer3","sound":"random"},{"id":"beer3","sound":"random"},{"id":"beer","sound":"random"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"burger","sound":"hamburgare_eller_baguette"},{"id":"beer","sound":"random"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"beer3","sound":"random"},{"id":"multiply5","sound":"anton_skratt"}],
+      'jkl123': [{"id":"beer","sound":"random"},{"id":"vip","sound":"vinner_ingenting"},{"id":"beer3","sound":"random"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"beer","sound":"random"},{"id":"wine","sound":"ohfan"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"wine","sound":"ohfan"},{"id":"wine","sound":"ohfan"},{"id":"multiply10","sound":"anton_skratt"}],
+      'mno456': [{"id":"beer","sound":"random"},{"id":"beer3","sound":"random"},{"id":"champagne","sound":"redan_samst"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"champagne","sound":"redan_samst"},{"id":"champagne","sound":"redan_samst"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"vip","sound":"vinner_ingenting"},{"id":"beer","sound":"random"},{"id":"multiply1","sound":"anton_skratt"}],
     };
   }
 
@@ -83,8 +87,9 @@ export default class TicketGenerator {
 
   getGameBoardByHash() {
     const path = window.location.hash;
-    if (this._winning_ids.includes(path.slice(8))) {
-      return this._generateBoard(true, this._getRandom());
+    const winningId = path.slice(8);
+    if (this._winning_ids[winningId]) {
+      return this._winning_ids[winningId];
     }
     return this._generateBoard(false, this._getRandom());
   }

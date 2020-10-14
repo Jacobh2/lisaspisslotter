@@ -13,7 +13,7 @@ async function run() {
 
     const availableIcons = (await fs.readdir(iconsDirectory, 'utf-8'))
         .filter((name) => name.endsWith(".webp"))
-        .map((name) => name.split(".")[0]);
+        .map((name) => name.split(".")[0].replace('_', ''));
 
     const tile = process.argv[2];
 

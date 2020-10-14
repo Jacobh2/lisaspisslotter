@@ -34,6 +34,14 @@ Will output a winning game board based on the given tile!
 
 The tile must exist as a .webp icon in public/icons
 
+### Winning IDs:
+
+- `abc123` = beer
+- `def456` = beer2
+- `ghi789` = beer3
+- `jkl123` = wine
+- `mno456` = champagne
+
 # TODO
 
 ## Frontend
