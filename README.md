@@ -39,6 +39,9 @@ No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
 - [ ] Don't show icons until everything is loaded
 - [ ] Change favicon
 - [ ] Update HTML title
+- [ ] Parameter for turning sounds on/off
+- [ ] All "events" should be recognized in the message bar
+- [ ] Recognize hash events to make Jacob stfu
 
 ## Backend
 - [ ] Other way of handling winning IDs?
