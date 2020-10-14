@@ -10,6 +10,7 @@ import ScratchedStore from './ScratchedStore';
 
 // Prevents accidental page update/edge drag causing scratches to fail
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
+window.addEventListener('hashchange', function () { window.location.reload(); });
 
 const audioPlayer = new AudioPlayer();
 const ticketGenerator = new TicketGenerator();
