@@ -5,7 +5,8 @@
     "generate": "node --experimental-modules scripts/winning-ticket-generator.mjs",
     "test": "jest",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "prettier --check \"src/**/*.{js,jsx}\""
+    "lint": "prettier --check \"src/**/*.{js,jsx}\"",
+    "release": "gsutil cp -r build/* gs://www.lisaspisslotter.se/"
   },
   "type": "module",
   "dependencies": {
