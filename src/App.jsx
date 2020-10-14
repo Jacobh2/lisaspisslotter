@@ -43,6 +43,8 @@ const iconMap = {
   'multiply10': multiply10
 };
 
+const OVERLAY_IMG_URL = klaver;
+const BRUSH_IMG_URL = brush;
 
 function getTileWinDescription(prizeId) {
   return {
@@ -80,15 +82,13 @@ function Tile({ tile, tileNr, onTileReveal }) {
 
   useEffect(() => {
     if (hasScratchIt) return;
-    const overlayImgUrl = klaver;
-    const brushImgUrl = brush;
 
     const onRevealInternal = () => {
       setIsRevealed(true);
       onTileReveal({ tileId: tile.id, tileNr, tileSound: tile.sound });
     };
 
-    ScratchIt(ref.current, overlayImgUrl, brushImgUrl, onRevealInternal, REVEAL_PERCENT);
+    ScratchIt(ref.current, OVERLAY_IMG_URL, BRUSH_IMG_URL, onRevealInternal, REVEAL_PERCENT);
     setHasScratchIt(true);
   }, [hasScratchIt, tile.id, onTileReveal, tileNr, tile.sound]);
 
@@ -151,10 +151,22 @@ function App({ tiles, store, onTileReveal }) {
     return () => store.offUpdate(fn);
   }, [store]);
 
+  const [imagesPreLoaded, setImagesPreLoaded] = useState('');
+  const isAllImagesPreloaded = imagesPreLoaded >= 2;
+
   return (
     <div className="app">
+
+      {/* Hack to display these before icons */}
+      <img src={BRUSH_IMG_URL} style={{ display: 'none' }} onLoad={() => {
+        setImagesPreLoaded(imagesPreLoaded + 1);
+      }} />
+      <img src={OVERLAY_IMG_URL} style={{ display: 'none' }} onLoad={() => {
+        setImagesPreLoaded(imagesPreLoaded + 1);
+      }} />
+
       <TicketMessage state={state} />
-      <Grid store={store} tiles={tiles} onTileReveal={onTileReveal} />
+      {isAllImagesPreloaded && <Grid store={store} tiles={tiles} onTileReveal={onTileReveal} />}
     </div>
   );
 }
