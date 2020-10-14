@@ -11,8 +11,16 @@ const REVEAL_PERCENT = 50;
 
 function getTileWinDescription(prizeId) {
   return {
-    'champagne': '🍾🍾🍾 Champagne 🥂🥂🥂'
-  }[prizeId] || 'UNKNOWN: ' + prizeId;
+    'champagne': '🍾🍾🍾 Woho! Drink bubbles with Lisa! 🥂🥂🥂',
+    'speech': '💬💬💬 Hold a speech to Lisa 💬💬💬',
+    'beer': '🍻🍻🍻 Cheers with Lisa 🍻🍻🍻',
+    'beee2': '🍺🍺🍺 Drink beer! 🍺🍺🍺',
+    'beer3': '🍺🍺🍺 Drink more beer! 🍺🍺🍺',
+    'vip': '😎😎😎 Omg, you just won a VIP ticket 😎😎😎',
+    'new': '🆕🆕🆕 New ticket: Go to toastmasters to find out 🆕🆕🆕',
+    'wine': '🍷🍷🍷 Congratz! Take some wine! 🍷🍷🍷',
+    'burger': '🍔🍔🍔 Have some tasty snacks! 🍔🍔🍔'
+  }[prizeId] || '😎🍺🍾: ' + prizeId;
 }
 
 function TicketMessage({ state }) {

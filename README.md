@@ -50,5 +50,5 @@ No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
   - Lots of beer
   - VIP ticket
   - Something with a hat
-- [ ] Photo edit ticket to say correct years under 30 & bottom text to "lisa lisa lisa"
+- [x] Photo edit ticket to say correct years under 30 & bottom text to "lisa lisa lisa"
 

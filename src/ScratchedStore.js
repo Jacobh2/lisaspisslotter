@@ -5,7 +5,7 @@ function getPrize({ scratchedTiles }) {
   return tileIdsWithThreeMatches[0];
 }
 
-export default class ScratchedState {
+export default class ScratchedStore {
   
   constructor(audioPlayer) {
     this.audioPlayer = audioPlayer;

@@ -1,4 +1,6 @@
 import beer from './public/icons/beer.webp';
+import beer2 from './public/icons/beer_2.webp';
+import beer3 from './public/icons/beer_3.webp';
 import burger from './public/icons/burger.webp';
 import cocktail from './public/icons/cocktail.webp';
 import key from './public/icons/key.webp';
@@ -6,6 +8,7 @@ import wine from './public/icons/wine.webp';
 import speech from './public/icons/speech.webp';
 import champagne from './public/icons/champagne.webp';
 import newTicket from './public/icons/new.webp';
+import vip from './public/icons/vip.webp';
 import multiply1 from './public/icons/multiply_1.webp';
 import multiply2 from './public/icons/multiply_2.webp';
 import multiply5 from './public/icons/multiply_5.webp';
@@ -23,6 +26,9 @@ export default class TicketGenerator {
     this._numberOfLosingTiles = 4;
     this._tiles = {
       beer: { id: 'beer', icon: beer, sound: 'random' },
+      beer2: { id: 'beer2', icon: beer2, sound: 'klipp_och_klistra' },
+      beer3: { id: 'beer3', icon: beer3, sound: 'random' },
+      vip: { id: 'vip', icon: vip, sound: 'vinner_ingenting' },
       burger: { id: 'burger', icon: burger, sound: 'hamburgare_eller_baguette' },
       cocktail: { id: 'cocktail', icon: cocktail, sound: 'redbull' },
       key: { id: 'key', icon: key, sound: 'drivmedel_100_kr' },
