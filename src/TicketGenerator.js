@@ -90,6 +90,10 @@ export default class TicketGenerator {
     return shuffledGameBoard;
   }
 
+  getRandomLosingGameBoard() {
+    return this._generateBoard(false);
+  }
+
   getGameBoardByHash() {
     const path = window.location.hash;
     if (this._winning_ids.includes(path.slice(8))) {

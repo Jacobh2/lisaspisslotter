@@ -35,7 +35,7 @@ function onTileReveal({ tileId, tileNr, tileSound }) {
 if (!window.location.hash.startsWith('#ticket/')) {
   ReactDOM.render(
     <React.StrictMode>
-      <h1>Go to #ticket/abc123 for a winning ticket!</h1>
+      <App store={store} tiles={ticketGenerator.getRandomLosingGameBoard()} onTileReveal={onTileReveal} />
     </React.StrictMode>,
     document.getElementById('root'),
   );
