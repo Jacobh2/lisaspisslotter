@@ -2,10 +2,12 @@
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
+    "generate": "node --experimental-modules src/winning-ticket-generator.mjs",
     "test": "jest",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "prettier --check \"src/**/*.{js,jsx}\""
   },
+  "type": "module",
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"

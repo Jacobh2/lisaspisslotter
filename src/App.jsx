@@ -5,9 +5,44 @@ import brush from './public/images/brush.png';
 import klaver from './public/images/tile_klaver.webp';
 import frame from './public/images/trisslott_cutout.webp';
 
+import beer from './public/icons/beer.webp';
+import beer2 from './public/icons/beer_2.webp';
+import beer3 from './public/icons/beer_3.webp';
+import burger from './public/icons/burger.webp';
+import cocktail from './public/icons/cocktail.webp';
+import key from './public/icons/key.webp';
+import wine from './public/icons/wine.webp';
+import speech from './public/icons/speech.webp';
+import champagne from './public/icons/champagne.webp';
+import newTicket from './public/icons/new.webp';
+import vip from './public/icons/vip.webp';
+import multiply1 from './public/icons/multiply_1.webp';
+import multiply2 from './public/icons/multiply_2.webp';
+import multiply5 from './public/icons/multiply_5.webp';
+import multiply10 from './public/icons/multiply_10.webp';
+
 import './App.css';
 
 const REVEAL_PERCENT = 50;
+
+const iconMap = {
+  'beer': beer, 
+  'beer2': beer2, 
+  'beer3': beer3, 
+  'burger': burger, 
+  'cocktail': cocktail, 
+  'key': key, 
+  'wine': wine, 
+  'speech': speech, 
+  'champagne': champagne, 
+  'newTicket': newTicket, 
+  'vip': vip, 
+  'multiply1': multiply1, 
+  'multiply2': multiply2, 
+  'multiply5': multiply5, 
+  'multiply10': multiply10
+};
+
 
 function getTileWinDescription(prizeId) {
   return {
@@ -60,7 +95,7 @@ function Tile({ tile, tileNr, onTileReveal }) {
   return (
     <div ref={ref} className={`grid__tile grid__tile--${tileNr} ${isRevealed ? 'grid__tile--revealed' : ''}`}>
       <span className="grid__tile__content">
-        <span className={`grid__tile__content__icon`} style={{ backgroundImage: `url(${tile.icon})` }}></span>
+        <span className={`grid__tile__content__icon`} style={{ backgroundImage: `url(${iconMap[tile.id]})` }}></span>
       </span>
     </div>
   );

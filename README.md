@@ -45,14 +45,14 @@ No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
 - [ ] Favourite Lisa quotes i nedre högra textfältet
 
 ## Backend
-- [ ] Other way of handling winning IDs?
+- [J] Other way of handling winning IDs?
   - Be able to give a specific price
 - [x] Rename state to store
 - [x] Compress sounds to get better UX on phone/slower internet 
 - [x] Add cutout for "don't scratch this square" thing
-- [ ] Create proper winning list
+- [J] Create proper winning list
   - Lots of beer
   - VIP ticket
   - Something with a hat
-- [x] Photo edit ticket to say correct years under 30 & bottom text to "lisa lisa lisa"
+- [x] Photo edit ticket to say correct years under 30
 

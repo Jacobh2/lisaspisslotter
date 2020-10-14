@@ -1,19 +1,3 @@
-import beer from './public/icons/beer.webp';
-import beer2 from './public/icons/beer_2.webp';
-import beer3 from './public/icons/beer_3.webp';
-import burger from './public/icons/burger.webp';
-import cocktail from './public/icons/cocktail.webp';
-import key from './public/icons/key.webp';
-import wine from './public/icons/wine.webp';
-import speech from './public/icons/speech.webp';
-import champagne from './public/icons/champagne.webp';
-import newTicket from './public/icons/new.webp';
-import vip from './public/icons/vip.webp';
-import multiply1 from './public/icons/multiply_1.webp';
-import multiply2 from './public/icons/multiply_2.webp';
-import multiply5 from './public/icons/multiply_5.webp';
-import multiply10 from './public/icons/multiply_10.webp';
-
 
 export default class TicketGenerator {
 
@@ -25,18 +9,22 @@ export default class TicketGenerator {
     ];
     this._numberOfLosingTiles = 4;
     this._tiles = {
-      beer: { id: 'beer', icon: beer, sound: 'random' },
-      beer2: { id: 'beer2', icon: beer2, sound: 'klipp_och_klistra' },
-      beer3: { id: 'beer3', icon: beer3, sound: 'random' },
-      vip: { id: 'vip', icon: vip, sound: 'vinner_ingenting' },
-      burger: { id: 'burger', icon: burger, sound: 'hamburgare_eller_baguette' },
-      cocktail: { id: 'cocktail', icon: cocktail, sound: 'redbull' },
-      key: { id: 'key', icon: key, sound: 'drivmedel_100_kr' },
-      wine: { id: 'wine', icon: wine, sound: 'ohfan' },
-      speech: { id: 'speech', icon: speech, sound: 'pest_eller_kolera' },
-      champagne: { id: 'champagne', icon: champagne, sound: 'redan_samst' },
-      new: { id: 'new', icon: newTicket, sound: 'ny_lott' },
+      beer: { id: 'beer', sound: 'random' },
+      beer2: { id: 'beer2', sound: 'klipp_och_klistra' },
+      beer3: { id: 'beer3', sound: 'random' },
+      vip: { id: 'vip', sound: 'vinner_ingenting' },
+      burger: { id: 'burger', sound: 'hamburgare_eller_baguette' },
+      cocktail: { id: 'cocktail', sound: 'redbull' },
+      key: { id: 'key', sound: 'drivmedel_100_kr' },
+      wine: { id: 'wine', sound: 'ohfan' },
+      speech: { id: 'speech', sound: 'pest_eller_kolera' },
+      champagne: { id: 'champagne', sound: 'redan_samst' },
+      new: { id: 'new', sound: 'ny_lott' },
     };
+  }
+
+  getTile(id){
+    return this._tiles[id];
   }
 
   _shuffle(arrayToShuffle) {
@@ -44,9 +32,9 @@ export default class TicketGenerator {
   }
 
   _getExtra() {
-    const availableExtra = [multiply1, multiply2, multiply5, multiply10];
+    const availableExtra = ['multiply1', 'multiply2', 'multiply5', 'multiply10'];
     const times = this._shuffle(availableExtra)[0];
-    return { id: 'multiply', icon: times, sound: 'anton_skratt' };
+    return { id: times, sound: 'anton_skratt' };
   }
 
   _getRandom(selectFrom) {
@@ -63,10 +51,9 @@ export default class TicketGenerator {
     return Object.values(allTilesExceptSelected);
   }
 
-  _generateBoard(winning) {
+  _generateBoard(winning, selectedTile) {
     const gameBoard = [];
 
-    const selectedTile = this._getRandom();
     // Add winning tile 3 tiles if 'winning', else 2 times
     const addAmountWinning = winning ? 3 : 2;
     for (let i = 0; i < addAmountWinning; i++) {
@@ -91,15 +78,15 @@ export default class TicketGenerator {
   }
 
   getRandomLosingGameBoard() {
-    return this._generateBoard(false);
+    return this._generateBoard(false, this._getRandom());
   }
 
   getGameBoardByHash() {
     const path = window.location.hash;
     if (this._winning_ids.includes(path.slice(8))) {
-      return this._generateBoard(true);
+      return this._generateBoard(true, this._getRandom());
     }
-    return this._generateBoard(false);
+    return this._generateBoard(false, this._getRandom());
   }
 
 }
