@@ -32,7 +32,7 @@ No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
 
 ## Frontend
 - [x] Start using icons instead of text in tiles
-- [ ] Have start page / landing page
+- [x] Have start page / landing page
   - Will always yield a losing ticket
 - [x] Winning / losing page
 - [ ] Scratch also the "don't scratch this square" thing, and then trigger a instant lose
