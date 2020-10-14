@@ -41,12 +41,11 @@ The tile must exist as a .webp icon in public/icons
 - [x] Have start page / landing page
   - Will always yield a losing ticket
 - [x] Winning / losing page
-- [ ] Scratch also the "don't scratch this square" thing, and then trigger a instant lose
-- [ ] Don't show icons until everything is loaded
-- [ ] Change favicon
-- [ ] Update HTML title
-- [ ] Parameter for turning sounds on/off
-- [ ] All "events" should be recognized in the message bar
+- [A] Scratch also the "don't scratch this square" thing, and then trigger a instant lose
+- [x] Don't show icons until everything is loaded
+- [x] Change favicon
+- [x] Update HTML title
+- [A] All "events" should be recognized in the message bar
 - [x] Recognize hash events to make Jacob stfu
 - [ ] Favourite Lisa quotes i nedre högra textfältet
 
