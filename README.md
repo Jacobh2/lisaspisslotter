@@ -63,7 +63,7 @@ The tile must exist as a .webp icon in public/icons
 - [x] Rename state to store
 - [x] Compress sounds to get better UX on phone/slower internet 
 - [x] Add cutout for "don't scratch this square" thing
-- [J] Create proper winning list
+- [x] Create proper winning list
   - Lots of beer
   - VIP ticket
   - Something with a hat
