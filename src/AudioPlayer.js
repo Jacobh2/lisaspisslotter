@@ -24,8 +24,9 @@ export default class AudioPlayer {
       klipp_och_klistra: new Audio(klipp_och_klistra),
       redan_samst: new Audio(redan_samst),
       vinner_ingenting: new Audio(vinner_ingenting),
-      win: new Audio(win),
     };
+
+    this._winSound = new Audio(win);
   }
 
   playRandom() {
@@ -46,8 +47,8 @@ export default class AudioPlayer {
   }
 
   playWin() {
-    this._sounds.win.play();
-    return this._sounds.win;
+    this._winSound.play();
+    return this._winSound;
   }
 
   playLost() {
