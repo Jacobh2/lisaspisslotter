@@ -2,14 +2,14 @@ import path from 'path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs/promises';
-import TicketGenerator from './TicketGenerator.js';
+import TicketGenerator from '../src/TicketGenerator.js';
 
 
 async function run() {
     //joining path of directory 
     const __dirname = dirname(fileURLToPath(import.meta.url));
 
-    const iconsDirectory = path.join(__dirname, 'public/icons');
+    const iconsDirectory = path.join(__dirname, './../src/public/icons');
 
     const availableIcons = (await fs.readdir(iconsDirectory, 'utf-8'))
         .filter((name) => name.endsWith(".webp"))
