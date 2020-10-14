@@ -28,6 +28,12 @@ Your app is ready to be deployed!
 
 No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
 
+### npm generate <tile>
+
+Will output a winning game board based on the given tile!
+
+The tile must exist as a .webp icon in public/icons
+
 # TODO
 
 ## Frontend
@@ -45,7 +51,7 @@ No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
 - [ ] Favourite Lisa quotes i nedre högra textfältet
 
 ## Backend
-- [J] Other way of handling winning IDs?
+- [x] Other way of handling winning IDs?
   - Be able to give a specific price
 - [x] Rename state to store
 - [x] Compress sounds to get better UX on phone/slower internet 
