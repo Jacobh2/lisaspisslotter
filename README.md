@@ -42,6 +42,7 @@ No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
 - [ ] Parameter for turning sounds on/off
 - [ ] All "events" should be recognized in the message bar
 - [x] Recognize hash events to make Jacob stfu
+- [ ] Favourite Lisa quotes i nedre högra textfältet
 
 ## Backend
 - [ ] Other way of handling winning IDs?
