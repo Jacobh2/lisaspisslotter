@@ -35,7 +35,7 @@ const iconMap = {
   'wine': wine,
   'speech': speech,
   'champagne': champagne,
-  'newTicket': newTicket,
+  'new': newTicket,
   'vip': vip,
   'multiply1': multiply1,
   'multiply2': multiply2,
@@ -46,24 +46,9 @@ const iconMap = {
 const OVERLAY_IMG_URL = klaver;
 const BRUSH_IMG_URL = brush;
 
-function getTileWinDescription(prizeId) {
-  return {
-    'champagne': '🍾🍾🍾 Woho! Drink bubbles with Lisa! 🥂🥂🥂',
-    'speech': '💬💬💬 Hold a speech to Lisa 💬💬💬',
-    'beer': '🍻🍻🍻 Cheers with Lisa 🍻🍻🍻',
-    'beee2': '🍺🍺🍺 Drink beer! 🍺🍺🍺',
-    'beer3': '🍺🍺🍺 Drink more beer! 🍺🍺🍺',
-    'vip': '😎😎😎 Omg, you just won a VIP ticket 😎😎😎',
-    'new': '🆕🆕🆕 New ticket: Go to toastmasters to find out 🆕🆕🆕',
-    'wine': '🍷🍷🍷 Congratz! Take some wine! 🍷🍷🍷',
-    'burger': '🍔🍔🍔 Have some tasty snacks! 🍔🍔🍔'
-  }[prizeId] || '😎🍺🍾: ' + prizeId;
-}
-
-function TicketMessage({ state }) {
-
+function TicketMessage({ state, getTileWinDescription }) {
   let text = 'Keep scratchin\'';
-  if (state.hasWon) text = getTileWinDescription(state.prize);
+  if (state.hasWon) text = getTileWinDescription(state.prize, state.multiply);
   if (state.hasLost) text = 'Det blev sämst igen!';
 
   return (
@@ -201,7 +186,7 @@ function NewTicketButton({ state, playNewTicketSound }){
   );
 }
 
-function App({ tiles, store, onTileReveal, quote, isCorrectId, playNewTicketSound }) {
+function App({ tiles, store, onTileReveal, quote, isCorrectId, playNewTicketSound, getTileWinDescription }) {
   const [state, setState] = useState(store.getState());
 
   useEffect(() => {
@@ -224,7 +209,7 @@ function App({ tiles, store, onTileReveal, quote, isCorrectId, playNewTicketSoun
         setImagesPreLoaded(imagesPreLoaded + 1);
       }} />
 
-      <TicketMessage state={state} />
+      <TicketMessage state={state} getTileWinDescription={getTileWinDescription} />
       {isAllImagesPreloaded && <Grid store={store} tiles={tiles} onTileReveal={onTileReveal} />}
       <QuoteSpace quote={quote} />
       <NewTicketButton state={state} playNewTicketSound={playNewTicketSound} />

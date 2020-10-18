@@ -7,6 +7,7 @@ import AudioPlayer from './AudioPlayer.js';
 import TicketGenerator from './TicketGenerator';
 import ScratchedStore from './ScratchedStore';
 import QuoteGenerator from './QuoteGenerator';
+import Message from './Message';
 
 
 // Prevents accidental page update/edge drag causing scratches to fail
@@ -17,8 +18,10 @@ const audioPlayer = new AudioPlayer();
 const ticketGenerator = new TicketGenerator();
 const store = new ScratchedStore(audioPlayer);
 const quoteGenerator = new QuoteGenerator();
+const message = new Message();
 
 function onTileReveal({ tileId, tileNr, tileSound }) {
+  console.log("Scratched tile", tileNr, tileId, "with sound", tileSound);
   const audioReference = audioPlayer.playById(tileSound);
   store.updateState(tileId, audioReference)
 
@@ -42,17 +45,21 @@ function playNewTicketSound(){
   return audioPlayer.playNewTicket();
 }
 
+function getTileWinDescription(prizeId, multiple){
+  return message.getText(prizeId, multiple)
+}
+
 if (!window.location.hash.startsWith('#ticket/')) {
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} tiles={ticketGenerator.getRandomLosingGameBoard()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} playNewTicketSound={playNewTicketSound}/>
+      <App store={store} tiles={ticketGenerator.getRandomLosingGameBoard()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} playNewTicketSound={playNewTicketSound} getTileWinDescription={getTileWinDescription} />
     </React.StrictMode>,
     document.getElementById('root'),
   );
 } else {
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} tiles={ticketGenerator.getGameBoardByHash()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} playNewTicketSound={playNewTicketSound} />
+      <App store={store} tiles={ticketGenerator.getGameBoardByHash()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} playNewTicketSound={playNewTicketSound} getTileWinDescription={getTileWinDescription} />
     </React.StrictMode>,
     document.getElementById('root'),
   );

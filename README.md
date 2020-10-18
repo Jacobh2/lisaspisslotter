@@ -53,7 +53,7 @@ The tile must exist as a .webp icon in public/icons
 - [x] Don't show icons until everything is loaded
 - [x] Change favicon
 - [x] Update HTML title
-- [A] All "events" should be recognized in the message bar
+- [x] All "events" should be recognized in the message bar
 - [x] Recognize hash events to make Jacob stfu
 - [-] Favourite Lisa quotes i nedre högra textfältet
 - [-] Field to enter a ticket ID directly on page
@@ -75,5 +75,6 @@ The tile must exist as a .webp icon in public/icons
 
 ## Problems Jacob needs help with:
 - The "isClicked: false" is printed 6 times in the console on first load
+  - Seems to be more things that is triggered multiple times, maybe should be like that?
 - On each scratch, the "isClicked: false" is printed twice
 - Fix state for "hasPlayedFinalSound" so that will trigger the reveal of the "new ticket" button, and not simply the "gameOver"

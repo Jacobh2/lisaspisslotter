@@ -1,8 +1,18 @@
 function getPrize({ scratchedTiles }) {
+  console.log("scratchedTiles:", scratchedTiles);
   const tileIds = Object.keys(scratchedTiles);
   const tileIdsWithThreeMatches = tileIds.filter(id => scratchedTiles[id] === 3);
   console.assert(tileIdsWithThreeMatches.length <= 1, scratchedTiles);
   return tileIdsWithThreeMatches[0];
+}
+
+function getMultiply({ scratchedTiles }) {
+  const tileIds = Object.keys(scratchedTiles);
+  for(const tileId of tileIds){
+    if(tileId.startsWith("multiply")){
+      return tileId.replace("multiply", "");
+    }
+  }
 }
 
 export default class ScratchedStore {
@@ -91,6 +101,7 @@ export default class ScratchedStore {
       hasWon: this._hasWon(),
       hasLost: this._hasLost(),
       prize: getPrize(this._state),
+      multiply: getMultiply(this._state),
       hasPlayedFinalSound: this._hasPlayedFinalSound(),
     };
   }
