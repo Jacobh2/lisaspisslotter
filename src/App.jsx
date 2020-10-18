@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ScratchIt from './ScratchIt.min.js';
 
+import quotes from "./QuoteGenerator";
+
 import brush from './public/images/brush.png';
 import klaver from './public/images/tile_klaver.webp';
 import frame from './public/images/trisslott_cutout.webp';
@@ -142,6 +144,17 @@ function Grid({ tiles, onTileReveal }) {
   );
 }
 
+function QuoteSpace(){
+  const quote = quotes.sort(() => 0.5 - Math.random())[0];
+  return (
+    <div className="quote-space">
+      <span className="quote-space__text">
+        {quote}
+      </span>
+    </div>
+  );
+}
+
 function App({ tiles, store, onTileReveal }) {
   const [state, setState] = useState(store.getState());
 
@@ -167,6 +180,7 @@ function App({ tiles, store, onTileReveal }) {
 
       <TicketMessage state={state} />
       {isAllImagesPreloaded && <Grid store={store} tiles={tiles} onTileReveal={onTileReveal} />}
+      <QuoteSpace />
     </div>
   );
 }

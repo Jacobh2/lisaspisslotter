@@ -22,6 +22,14 @@ body {
   border-bottom: 1px solid grey;
 }
 
+.quote-space {
+  padding: 1%;
+  margin-top: 8.5%;
+  margin-left: 23%;
+  background-color: white;
+  font-family: "Courier New";
+}
+
 .grid {
 
   display: flex;
