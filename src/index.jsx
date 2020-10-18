@@ -34,17 +34,21 @@ function onTileReveal({ tileId, tileNr, tileSound }) {
   }
 }
 
+function isCorrectId(id){
+  return ticketGenerator.isCorrectId(id);
+}
+
 if (!window.location.hash.startsWith('#ticket/')) {
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} tiles={ticketGenerator.getRandomLosingGameBoard()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} />
+      <App store={store} tiles={ticketGenerator.getRandomLosingGameBoard()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} />
     </React.StrictMode>,
     document.getElementById('root'),
   );
 } else {
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} tiles={ticketGenerator.getGameBoardByHash()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} />
+      <App store={store} tiles={ticketGenerator.getGameBoardByHash()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} />
     </React.StrictMode>,
     document.getElementById('root'),
   );

@@ -81,6 +81,10 @@ export default class TicketGenerator {
     return shuffledGameBoard;
   }
 
+  isCorrectId(id){
+    return this._winning_ids[id];
+  }
+
   getRandomLosingGameBoard() {
     return this._generateBoard(false, this._getRandom());
   }
@@ -88,7 +92,7 @@ export default class TicketGenerator {
   getGameBoardByHash() {
     const path = window.location.hash;
     const winningId = path.slice(8);
-    if (this._winning_ids[winningId]) {
+    if (this.isCorrectId(winningId)) {
       return this._winning_ids[winningId];
     }
     return this._generateBoard(false, this._getRandom());

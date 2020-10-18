@@ -29,6 +29,11 @@ body {
   background-color: white;
 }
 
+.ticket-id-box {
+  position: fixed;
+  bottom: 10px;
+}
+
 .grid {
 
   display: flex;

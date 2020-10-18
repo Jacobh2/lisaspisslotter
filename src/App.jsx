@@ -28,20 +28,20 @@ import './App.css';
 const REVEAL_PERCENT = 50;
 
 const iconMap = {
-  'beer': beer, 
-  'beer2': beer2, 
-  'beer3': beer3, 
-  'burger': burger, 
-  'cocktail': cocktail, 
-  'key': key, 
-  'wine': wine, 
-  'speech': speech, 
-  'champagne': champagne, 
-  'newTicket': newTicket, 
-  'vip': vip, 
-  'multiply1': multiply1, 
-  'multiply2': multiply2, 
-  'multiply5': multiply5, 
+  'beer': beer,
+  'beer2': beer2,
+  'beer3': beer3,
+  'burger': burger,
+  'cocktail': cocktail,
+  'key': key,
+  'wine': wine,
+  'speech': speech,
+  'champagne': champagne,
+  'newTicket': newTicket,
+  'vip': vip,
+  'multiply1': multiply1,
+  'multiply2': multiply2,
+  'multiply5': multiply5,
   'multiply10': multiply10
 };
 
@@ -144,8 +144,7 @@ function Grid({ tiles, onTileReveal }) {
   );
 }
 
-function QuoteSpace({ quote }){
-  // Get psudo-random quote to display!
+function QuoteSpace({ quote }) {
   return (
     <div className="quote-space">
       <span className="quote-space__text">
@@ -155,7 +154,23 @@ function QuoteSpace({ quote }){
   );
 }
 
-function App({ tiles, store, onTileReveal, quote }) {
+function TicketIdBox({ isCorrectId }) {
+
+  function handleChange(e) {
+    const ticketId = e.target.value;
+    if(isCorrectId(ticketId)){
+      window.location.hash = `#ticket/${ticketId}`;
+    }
+  }
+
+  return (
+    <div className="ticket-id-box">
+      <input maxLength="6" type="text" placeholder="Ticket ID" onChange={handleChange}></input>
+    </div>
+  );
+}
+
+function App({ tiles, store, onTileReveal, quote, isCorrectId }) {
   const [state, setState] = useState(store.getState());
 
   useEffect(() => {
@@ -181,6 +196,7 @@ function App({ tiles, store, onTileReveal, quote }) {
       <TicketMessage state={state} />
       {isAllImagesPreloaded && <Grid store={store} tiles={tiles} onTileReveal={onTileReveal} />}
       <QuoteSpace quote={quote} />
+      <TicketIdBox isCorrectId={isCorrectId} />
     </div>
   );
 }
