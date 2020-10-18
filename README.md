@@ -55,7 +55,9 @@ The tile must exist as a .webp icon in public/icons
 - [x] Update HTML title
 - [A] All "events" should be recognized in the message bar
 - [x] Recognize hash events to make Jacob stfu
-- [ ] Favourite Lisa quotes i nedre högra textfältet
+- [J] Favourite Lisa quotes i nedre högra textfältet
+- [ ] Field to enter a ticket ID directly on page
+- [ ] When won/lost, button for new ticket, should play "ny_lott" sound
 
 ## Backend
 - [x] Other way of handling winning IDs?
