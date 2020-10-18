@@ -78,3 +78,19 @@ The tile must exist as a .webp icon in public/icons
   - Seems to be more things that is triggered multiple times, maybe should be like that?
 - On each scratch, the "isClicked: false" is printed twice
 - Fix state for "hasPlayedFinalSound" so that will trigger the reveal of the "new ticket" button, and not simply the "gameOver"
+
+## Works on:
+[ ] Edge on Windows
+[x] Chrome on Windows
+[x] Chrome on Mac
+[x] Chrome on Android
+[ ] Chrome on iOS
+  - Problems, going to a winning ticket ID doesn't show the top
+[ ] Safari on Mac
+  - Problems, inspecting shows that "Grid" isn't even loaded, something wrong with the 'isAllImagesPreloaded' hack?
+[ ] Safari on iOS
+  - Problem: Sounds on Grid not working, but "new ticket" gives sound
+  - Giving in a winning ID actually works!! :D 
+[ ] Internet (Samsung) on Android
+  - 
+

@@ -41,7 +41,7 @@ export default class QuoteGenerator {
     If shorted than MAX_LENGTH characters, fill in with
     numbers to make it look like a real ticket
     */
-    quote = quote.replaceAll(' ', '-');
+    quote = quote.replace(/\s/g, '-');
     quote = quote.toUpperCase();
     const padLength = this.MAX_LENGTH - quote.length;
     const firstDashIndex = quote.indexOf("-");
