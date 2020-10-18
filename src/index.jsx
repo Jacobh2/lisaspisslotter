@@ -38,17 +38,21 @@ function isCorrectId(id){
   return ticketGenerator.isCorrectId(id);
 }
 
+function playNewTicketSound(){
+  return audioPlayer.playNewTicket();
+}
+
 if (!window.location.hash.startsWith('#ticket/')) {
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} tiles={ticketGenerator.getRandomLosingGameBoard()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} />
+      <App store={store} tiles={ticketGenerator.getRandomLosingGameBoard()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} playNewTicketSound={playNewTicketSound}/>
     </React.StrictMode>,
     document.getElementById('root'),
   );
 } else {
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} tiles={ticketGenerator.getGameBoardByHash()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} />
+      <App store={store} tiles={ticketGenerator.getGameBoardByHash()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} playNewTicketSound={playNewTicketSound} />
     </React.StrictMode>,
     document.getElementById('root'),
   );

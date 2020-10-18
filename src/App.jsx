@@ -1,11 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ScratchIt from './ScratchIt.min.js';
 
-import QuoteGenerator from "./QuoteGenerator";
-
 import brush from './public/images/brush.png';
 import klaver from './public/images/tile_klaver.webp';
-import frame from './public/images/trisslott_cutout.webp';
+import frame from './public/images/pisslott_cutout.webp';
 
 import beer from './public/icons/beer.webp';
 import beer2 from './public/icons/beer_2.webp';
@@ -157,7 +155,7 @@ function QuoteSpace({ quote }) {
 function TicketIdBox({ isCorrectId }) {
 
   function handleChange(e) {
-    const ticketId = e.target.value;
+    const ticketId = e.target.value.toLowerCase();
     if(isCorrectId(ticketId)){
       window.location.hash = `#ticket/${ticketId}`;
     }
@@ -170,7 +168,40 @@ function TicketIdBox({ isCorrectId }) {
   );
 }
 
-function App({ tiles, store, onTileReveal, quote, isCorrectId }) {
+function NewTicketButton({ state, playNewTicketSound }){
+  const buttonText = "Ny Pisslott!";
+  const gameOver = state.hasWon || state.hasLost;
+  // const revealButton = gameOver && state.hasPlayedFinalSound;
+  const [isClicked, setIsClicked] = useState(false);
+  console.log("isClicked:", isClicked);
+
+  function handleOnClick(e){
+    setIsClicked(true);
+    const audioReference = playNewTicketSound();
+    audioReference.addEventListener("ended", function(){
+      audioReference.currentTime = 0;
+      // When the sound is done, go to start page
+      window.location = "/";
+    });
+  }
+
+  return (
+    <div className="new-ticket">
+      <button
+        type="button"
+        onClick={handleOnClick}
+        className={`new-ticket__button ${gameOver ? '' : 'hidden'}`}>
+          <span className="new-ticket__button__text">
+            {buttonText}
+          </span>
+          <div className={`loader ${isClicked ? '' : 'hidden'}`}/>
+      </button>
+      
+    </div>
+  );
+}
+
+function App({ tiles, store, onTileReveal, quote, isCorrectId, playNewTicketSound }) {
   const [state, setState] = useState(store.getState());
 
   useEffect(() => {
@@ -196,6 +227,7 @@ function App({ tiles, store, onTileReveal, quote, isCorrectId }) {
       <TicketMessage state={state} />
       {isAllImagesPreloaded && <Grid store={store} tiles={tiles} onTileReveal={onTileReveal} />}
       <QuoteSpace quote={quote} />
+      <NewTicketButton state={state} playNewTicketSound={playNewTicketSound} />
       <TicketIdBox isCorrectId={isCorrectId} />
     </div>
   );

@@ -56,8 +56,9 @@ The tile must exist as a .webp icon in public/icons
 - [A] All "events" should be recognized in the message bar
 - [x] Recognize hash events to make Jacob stfu
 - [-] Favourite Lisa quotes i nedre högra textfältet
-- [J] Field to enter a ticket ID directly on page
-- [ ] When won/lost, button for new ticket, should play "ny_lott" sound
+- [-] Field to enter a ticket ID directly on page
+- [-] When won/lost, button for new ticket, should play "ny_lott" sound
+- [ ] Add a speaker/sound icon in top right corner to show/inform that sound is playing
 
 ## Backend
 - [x] Other way of handling winning IDs?
@@ -70,5 +71,9 @@ The tile must exist as a .webp icon in public/icons
   - VIP ticket
   - Something with a hat
 - [x] Photo edit ticket to say correct years under 30
-- [J] Grafitti "P" over "Tr" in "Triss" 
+- [x] Grafitti "P" over "Tr" in "Triss" 
 
+## Problems Jacob needs help with:
+- The "isClicked: false" is printed 6 times in the console on first load
+- On each scratch, the "isClicked: false" is printed twice
+- Fix state for "hasPlayedFinalSound" so that will trigger the reveal of the "new ticket" button, and not simply the "gameOver"

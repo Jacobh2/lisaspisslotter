@@ -17,7 +17,6 @@ export default class AudioPlayer {
       ohfan: new Audio(ohfan),
       anton_skratt: new Audio(anton_skratt),
       hamburgare_eller_baguette: new Audio(hamburgare_eller_baguette),
-      ny_lott: new Audio(ny_lott),
       pest_eller_kolera: new Audio(pest_eller_kolera),
       redbull: new Audio(redbull),
       drivmedel_100_kr: new Audio(drivmedel_100_kr),
@@ -27,6 +26,7 @@ export default class AudioPlayer {
     };
 
     this._winSound = new Audio(win);
+    this._newTicketSound = new Audio(ny_lott);
   }
 
   playRandom() {
@@ -37,22 +37,33 @@ export default class AudioPlayer {
   }
 
   playById(id) {
-    if (id === 'random') {
-      return this.playRandom();
-    } else {
-      const audio = this._sounds[id];
-      audio.play();
-      return audio;
+    let sound = null;
+    switch(id){
+      case 'random':
+        return this.playRandom();
+      case 'ny_lott':
+        sound = this._newTicketSound;
+        break;
+      case 'win':
+        sound = this._winSound;
+        break;
+      default:
+        sound = this._sounds[id];
+        break;
     }
+    sound.play();
+    return sound;
   }
 
   playWin() {
-    this._winSound.play();
-    return this._winSound;
+    return this.playById('win');
   }
 
   playLost() {
-    this._sounds.vinner_ingenting.play();
-    return this._sounds.vinner_ingenting;
+    return this.playById('vinner_ingenting');
+  }
+
+  playNewTicket() {
+    return this.playById('ny_lott');
   }
 }

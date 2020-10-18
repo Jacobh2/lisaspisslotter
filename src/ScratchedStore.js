@@ -16,8 +16,9 @@ export default class ScratchedStore {
       won: false
     };
     this.TOTAL_NUMBER_OF_TILES = 10;
-
     this._callbacks = new Set();
+    this._hasPlayedLostSound = false;
+    this._hasPlayedWinSound = false;
   }
   
   _hasWon() {
@@ -33,6 +34,10 @@ export default class ScratchedStore {
   
   _hasScratchedAll(){
     return this._state.numberOfScratchedTiles === this.TOTAL_NUMBER_OF_TILES;
+  }
+
+  _hasPlayedFinalSound(){
+    return this._hasPlayedLostSound || this._hasPlayedWinSound;
   }
   
   updateState(tileId, audioReference) {
@@ -51,14 +56,22 @@ export default class ScratchedStore {
       this._state.winningSoundPlayed = true;
       audioReference.addEventListener("ended", function(){
         audioReference.currentTime = 0;
-        audioPlayer.playWin();
+        const winSound = audioPlayer.playWin();
+        winSound.addEventListener("ended", function(){
+          winSound.currentTime = 0;
+          this._hasPlayedWinSound = true;
+        });
       });
     }
     
     if (this._hasLost()) {
       audioReference.addEventListener("ended", function(){
         audioReference.currentTime = 0;
-        audioPlayer.playLost();
+        const lostSound = audioPlayer.playLost();
+        lostSound.addEventListener("ended", function(){
+          lostSound.currentTime = 0;
+          this._hasPlayedLostSound = true;
+        });
       });
     }
 
@@ -77,7 +90,8 @@ export default class ScratchedStore {
     return {
       hasWon: this._hasWon(),
       hasLost: this._hasLost(),
-      prize: getPrize(this._state)
+      prize: getPrize(this._state),
+      hasPlayedFinalSound: this._hasPlayedFinalSound(),
     };
   }
 }
