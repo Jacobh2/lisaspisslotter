@@ -27,7 +27,6 @@ body {
   margin-top: 8.5%;
   margin-left: 23%;
   background-color: white;
-  font-family: "Courier New";
 }
 
 .grid {
@@ -111,4 +110,8 @@ body {
 
 .grid__tile--revealed canvas {
   display: none;
+}
+
+.quote-space__text {
+  font-family: "Courier New";
 }

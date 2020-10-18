@@ -6,6 +6,7 @@ import './index.css';
 import AudioPlayer from './AudioPlayer.js';
 import TicketGenerator from './TicketGenerator';
 import ScratchedStore from './ScratchedStore';
+import QuoteGenerator from './QuoteGenerator';
 
 
 // Prevents accidental page update/edge drag causing scratches to fail
@@ -15,6 +16,7 @@ window.addEventListener('hashchange', function () { window.location.reload(); })
 const audioPlayer = new AudioPlayer();
 const ticketGenerator = new TicketGenerator();
 const store = new ScratchedStore(audioPlayer);
+const quoteGenerator = new QuoteGenerator();
 
 function onTileReveal({ tileId, tileNr, tileSound }) {
   const audioReference = audioPlayer.playById(tileSound);
@@ -35,14 +37,14 @@ function onTileReveal({ tileId, tileNr, tileSound }) {
 if (!window.location.hash.startsWith('#ticket/')) {
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} tiles={ticketGenerator.getRandomLosingGameBoard()} onTileReveal={onTileReveal} />
+      <App store={store} tiles={ticketGenerator.getRandomLosingGameBoard()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} />
     </React.StrictMode>,
     document.getElementById('root'),
   );
 } else {
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} tiles={ticketGenerator.getGameBoardByHash()} onTileReveal={onTileReveal} />
+      <App store={store} tiles={ticketGenerator.getGameBoardByHash()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} />
     </React.StrictMode>,
     document.getElementById('root'),
   );
