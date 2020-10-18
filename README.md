@@ -92,5 +92,7 @@ The tile must exist as a .webp icon in public/icons
   - Problem: Sounds on Grid not working, but "new ticket" gives sound
   - Giving in a winning ID actually works!! :D 
 [ ] Internet (Samsung) on Android
-  - 
+  - Does not load the page, only white page showing
+
+--> Is this where Babel should come to use?
 

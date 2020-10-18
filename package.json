@@ -6,7 +6,7 @@
     "test": "jest",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "prettier --check \"src/**/*.{js,jsx}\"",
-    "release": "gsutil cp -r build/* gs://www.lisaspisslotter.se/"
+    "release": "gsutil -m cp -r build/* gs://www.lisaspisslotter.se/"
   },
   "type": "module",
   "dependencies": {
