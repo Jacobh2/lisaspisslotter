@@ -102,6 +102,8 @@ export default class TicketGenerator {
     let board = null;
     if (this.isCorrectId(winningId)) {
       board = this._winning_ids[winningId];
+      board.push(this._lose_tile);
+      return board;
     }
     board = this._generateBoard(false, this._getRandom());
     board.push(this._lose_tile);
