@@ -24,9 +24,10 @@ body {
 
 .quote-space {
   position: absolute;
-  bottom: -64px;
-  right: -18px;
-  background-color: white;
+  bottom: -70px;
+  right: -22px;
+  background-color: #ffffffcc;
+  padding: 5px;
 }
 
 .ticket-id-box {
@@ -109,6 +110,9 @@ body {
   justify-content: flex-start;
   height: 87px;
   width: 72px;
+  position: absolute;
+  bottom: -62px;
+  left: -10px;
 }
 
 .grid__tile {
@@ -153,7 +157,8 @@ body {
   background-position: center;
 }
 
-.grid__tile canvas {
+.grid__tile canvas,
+.grid__tile-big canvas {
   position: absolute;
   top: 0;
   left: 0;

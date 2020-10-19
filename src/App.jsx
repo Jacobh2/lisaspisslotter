@@ -52,6 +52,7 @@ const overlays = {
 
 const OVERLAY_IMG_URL = klaver;
 const BRUSH_IMG_URL = brush;
+const LOSE_OVERLAY_IMG_URL = lose;
 const NEW_TICKET_TEXT = "Ny Pisslott!";
 
 function TicketMessage({ state, getTileWinDescription }) {
@@ -210,17 +211,24 @@ function App({ tiles, store, onTileReveal, quote, isCorrectId, playNewTicketSoun
     return () => store.offUpdate(fn);
   }, [store]);
 
-  const [imagesPreLoaded, setImagesPreLoaded] = useState('');
-  const isAllImagesPreloaded = imagesPreLoaded >= 2;
+  const [imagesPreLoaded, setImagesPreLoaded] = useState(0);
+  console.log('imagesPreLoaded', imagesPreLoaded);
+  const isAllImagesPreloaded = imagesPreLoaded >= 3;
 
   return (
     <div className="app">
 
       {/* Hack to display these before icons */}
       <img src={BRUSH_IMG_URL} style={{ display: 'none' }} onLoad={() => {
+        console.log('BRUSH_IMG_URL', BRUSH_IMG_URL);
         setImagesPreLoaded(imagesPreLoaded + 1);
       }} />
       <img src={OVERLAY_IMG_URL} style={{ display: 'none' }} onLoad={() => {
+        console.log('OVERLAY_IMG_URL', OVERLAY_IMG_URL);
+        setImagesPreLoaded(imagesPreLoaded + 1);
+      }} />
+      <img src={LOSE_OVERLAY_IMG_URL} style={{ display: 'none' }} onLoad={() => {
+        console.log('LOSE_OVERLAY_IMG_URL', LOSE_OVERLAY_IMG_URL);
         setImagesPreLoaded(imagesPreLoaded + 1);
       }} />
 
