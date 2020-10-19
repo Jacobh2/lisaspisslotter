@@ -149,7 +149,7 @@ function TicketIdBox({ isCorrectId }) {
 
   return (
     <div className="ticket-id-box">
-      <input maxLength="6" type="text" placeholder="Ticket ID" onChange={handleChange}></input>
+      <input className="ticket-id-box__input" maxLength="6" type="text" placeholder="Ticket ID" onChange={handleChange}></input>
     </div>
   );
 }
