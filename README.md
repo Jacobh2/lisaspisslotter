@@ -49,15 +49,15 @@ The tile must exist as a .webp icon in public/icons
 - [x] Have start page / landing page
   - Will always yield a losing ticket
 - [x] Winning / losing page
-- [A] Scratch also the "don't scratch this square" thing, and then trigger a instant lose
+- [x] Scratch also the "don't scratch this square" thing, and then trigger a instant lose
 - [x] Don't show icons until everything is loaded
 - [x] Change favicon
 - [x] Update HTML title
 - [x] All "events" should be recognized in the message bar
 - [x] Recognize hash events to make Jacob stfu
 - [x] Favourite Lisa quotes i nedre högra textfältet
-- [-] Field to enter a ticket ID directly on page
-- [-] When won/lost, button for new ticket, should play "ny_lott" sound
+- [x] Field to enter a ticket ID directly on page
+- [x] When won/lost, button for new ticket, should play "ny_lott" sound
 - [ ] Add a speaker/sound icon in top right corner to show/inform that sound is playing
 
 ## Backend
@@ -72,9 +72,6 @@ The tile must exist as a .webp icon in public/icons
   - Something with a hat
 - [x] Photo edit ticket to say correct years under 30
 - [x] Grafitti "P" over "Tr" in "Triss" 
-
-## Problems Jacob needs help with:
-[x] Fix state for "hasPlayedFinalSound" so that will trigger the reveal of the "new ticket" button, and not simply the "gameOver"
 
 ## Works on:
 [ ] Edge on Windows
