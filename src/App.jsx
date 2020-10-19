@@ -87,7 +87,7 @@ function Tile({ tile, tileNr, onTileReveal }) {
   );
 }
 
-function Grid({ tiles, onTileReveal }) {
+function Grid({ tiles, onTileReveal, quote }) {
 
   const tileItems = tiles.map((tile, i) => (
     <Tile
@@ -123,6 +123,7 @@ function Grid({ tiles, onTileReveal }) {
         <div className="grid__row__special-tile">
           {specialTile}
         </div>
+        <QuoteSpace quote={quote} />
       </div>
     </div>
   );
@@ -211,8 +212,7 @@ function App({ tiles, store, onTileReveal, quote, isCorrectId, playNewTicketSoun
       }} />
 
       <TicketMessage state={state} getTileWinDescription={getTileWinDescription} />
-      {isAllImagesPreloaded && <Grid store={store} tiles={tiles} onTileReveal={onTileReveal} />}
-      <QuoteSpace quote={quote} />
+      {isAllImagesPreloaded && <Grid quote={quote} store={store} tiles={tiles} onTileReveal={onTileReveal} />}
       <NewTicketButton state={state} playNewTicketSound={playNewTicketSound} />
       <TicketIdBox isCorrectId={isCorrectId} />
     </div>
