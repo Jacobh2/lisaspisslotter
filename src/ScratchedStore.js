@@ -64,23 +64,25 @@ export default class ScratchedStore {
     
     if (this._hasWon() && !this._state.winningSoundPlayed) {
       this._state.winningSoundPlayed = true;
-      audioReference.addEventListener("ended", function(){
+      audioReference.addEventListener("ended", () => {
         audioReference.currentTime = 0;
         const winSound = audioPlayer.playWin();
-        winSound.addEventListener("ended", function(){
+        winSound.addEventListener("ended", () => {
           winSound.currentTime = 0;
           this._hasPlayedWinSound = true;
+          this._callbacks.forEach(fn => fn());
         });
       });
     }
     
     if (this._hasLost()) {
-      audioReference.addEventListener("ended", function(){
+      audioReference.addEventListener("ended", () => {
         audioReference.currentTime = 0;
         const lostSound = audioPlayer.playLost();
-        lostSound.addEventListener("ended", function(){
+        lostSound.addEventListener("ended", () => {
           lostSound.currentTime = 0;
           this._hasPlayedLostSound = true;
+          this._callbacks.forEach(fn => fn());
         });
       });
     }

@@ -74,10 +74,7 @@ The tile must exist as a .webp icon in public/icons
 - [x] Grafitti "P" over "Tr" in "Triss" 
 
 ## Problems Jacob needs help with:
-- The "isClicked: false" is printed 6 times in the console on first load
-  - Seems to be more things that is triggered multiple times, maybe should be like that?
-- On each scratch, the "isClicked: false" is printed twice
-- Fix state for "hasPlayedFinalSound" so that will trigger the reveal of the "new ticket" button, and not simply the "gameOver"
+[x] Fix state for "hasPlayedFinalSound" so that will trigger the reveal of the "new ticket" button, and not simply the "gameOver"
 
 ## Works on:
 [ ] Edge on Windows

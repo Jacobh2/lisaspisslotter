@@ -157,7 +157,7 @@ function TicketIdBox({ isCorrectId }) {
 
 function NewTicketButton({ state, playNewTicketSound }){
   const gameOver = state.hasWon || state.hasLost;
-  // const revealButton = gameOver && state.hasPlayedFinalSound;
+  const revealButton = gameOver && state.hasPlayedFinalSound;
   const [isClicked, setIsClicked] = useState(false);
 
   function handleOnClick(e){
@@ -175,7 +175,7 @@ function NewTicketButton({ state, playNewTicketSound }){
       <button
         type="button"
         onClick={handleOnClick}
-        className={`new-ticket__button ${gameOver ? '' : 'hidden'}`}>
+        className={`new-ticket__button ${revealButton ? '' : 'hidden'}`}>
           <div className="new-ticket__container">
             <span className="new-ticket__button__text">
               {NEW_TICKET_TEXT}
