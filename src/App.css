@@ -103,6 +103,14 @@ body {
   width: 100%;
 }
 
+.grid__row__lose-tile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 87px;
+  width: 72px;
+}
+
 .grid__tile {
   position: relative;
   box-sizing: border-box;
@@ -113,6 +121,20 @@ body {
 
   width: 82px;
   height: 66px;
+
+  background-color: rgb(234 229 138 / 1);
+}
+
+.grid__tile-big {
+  position: relative;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 72px;
+  height: 87px;
 
   background-color: rgb(234 229 138 / 1);
 }
