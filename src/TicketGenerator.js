@@ -25,6 +25,11 @@ export default class TicketGenerator {
       'jkl123': [{"id":"beer","sound":"random"},{"id":"vip","sound":"vinner_ingenting"},{"id":"beer3","sound":"random"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"beer","sound":"random"},{"id":"wine","sound":"ohfan"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"wine","sound":"ohfan"},{"id":"wine","sound":"ohfan"},{"id":"multiply10","sound":"anton_skratt"}],
       'mno456': [{"id":"beer","sound":"random"},{"id":"beer3","sound":"random"},{"id":"champagne","sound":"redan_samst"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"champagne","sound":"redan_samst"},{"id":"champagne","sound":"redan_samst"},{"id":"beer2","sound":"klipp_och_klistra"},{"id":"vip","sound":"vinner_ingenting"},{"id":"beer","sound":"random"},{"id":"multiply5","sound":"anton_skratt"}],
     };
+    this._lose_tile = {
+      id: 'cry',
+      sound: 'ohfan',
+      overlay: 'lose'
+    };
   }
 
   getTile(id){
@@ -86,16 +91,23 @@ export default class TicketGenerator {
   }
 
   getRandomLosingGameBoard() {
-    return this._generateBoard(false, this._getRandom());
+    const board = this._generateBoard(false, this._getRandom());
+    board.push(this._lose_tile);
+    return board;
   }
 
   getGameBoardByHash() {
     const path = window.location.hash;
     const winningId = path.slice(8);
+    let board = null;
     if (this.isCorrectId(winningId)) {
-      return this._winning_ids[winningId];
+      board = this._winning_ids[winningId];
+      board.push(this._lose_tile);
+      return board;
     }
-    return this._generateBoard(false, this._getRandom());
+    board = this._generateBoard(false, this._getRandom());
+    board.push(this._lose_tile);
+    return board;
   }
 
 }

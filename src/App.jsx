@@ -3,6 +3,7 @@ import ScratchIt from './ScratchIt.min.js';
 
 import brush from './public/images/brush.png';
 import klaver from './public/images/tile_klaver.webp';
+import lose from './public/images/lose.webp';
 import frame from './public/images/pisslott_cutout.webp';
 
 import beer from './public/icons/beer.webp';
@@ -16,6 +17,7 @@ import speech from './public/icons/speech.webp';
 import champagne from './public/icons/champagne.webp';
 import newTicket from './public/icons/new.webp';
 import vip from './public/icons/vip.webp';
+import cry from './public/icons/cry.webp'
 import multiply1 from './public/icons/multiply_1.webp';
 import multiply2 from './public/icons/multiply_2.webp';
 import multiply5 from './public/icons/multiply_5.webp';
@@ -40,11 +42,17 @@ const iconMap = {
   'multiply1': multiply1,
   'multiply2': multiply2,
   'multiply5': multiply5,
-  'multiply10': multiply10
+  'multiply10': multiply10,
+  'cry': cry,
+};
+
+const overlays = {
+  'lose': lose
 };
 
 const OVERLAY_IMG_URL = klaver;
 const BRUSH_IMG_URL = brush;
+const LOSE_OVERLAY_IMG_URL = lose;
 const NEW_TICKET_TEXT = "Ny Pisslott!";
 
 function TicketMessage({ state, getTileWinDescription }) {
@@ -66,6 +74,8 @@ function Tile({ tile, tileNr, onTileReveal }) {
   const [isRevealed, setIsRevealed] = useState(false);
   const [hasScratchIt, setHasScratchIt] = useState(false);
 
+  const overlayImgUrl = tile.overlay ? overlays[tile.overlay] : OVERLAY_IMG_URL;
+
   useEffect(() => {
     if (hasScratchIt) return;
 
@@ -74,12 +84,12 @@ function Tile({ tile, tileNr, onTileReveal }) {
       onTileReveal({ tileId: tile.id, tileNr, tileSound: tile.sound });
     };
 
-    ScratchIt(ref.current, OVERLAY_IMG_URL, BRUSH_IMG_URL, onRevealInternal, REVEAL_PERCENT);
+    ScratchIt(ref.current, overlayImgUrl, BRUSH_IMG_URL, onRevealInternal, REVEAL_PERCENT);
     setHasScratchIt(true);
-  }, [hasScratchIt, tile.id, onTileReveal, tileNr, tile.sound]);
+  }, [hasScratchIt, tile.id, onTileReveal, tileNr, tile.sound, overlayImgUrl]);
 
   return (
-    <div ref={ref} className={`grid__tile grid__tile--${tileNr} ${isRevealed ? 'grid__tile--revealed' : ''}`}>
+    <div ref={ref} className={`${tile.overlay ? 'grid__tile-big' : 'grid__tile'} grid__tile--${tileNr} ${isRevealed ? 'grid__tile--revealed' : ''}`}>
       <span className="grid__tile__content">
         <span className={`grid__tile__content__icon`} style={{ backgroundImage: `url(${iconMap[tile.id]})` }}></span>
       </span>
@@ -88,6 +98,7 @@ function Tile({ tile, tileNr, onTileReveal }) {
 }
 
 function Grid({ tiles, onTileReveal, quote }) {
+  console.log("Tiles:", tiles);
 
   const tileItems = tiles.map((tile, i) => (
     <Tile
@@ -102,11 +113,11 @@ function Grid({ tiles, onTileReveal, quote }) {
   const secondRow = tileItems.slice(3, 6);
   const thirdRow = tileItems.slice(6, 9);
   const specialTile = tileItems[9];
+  const loseTile = tileItems[10];
 
   console.assert(firstRow.length === 3, firstRow.length);
   console.assert(secondRow.length === 3, secondRow.length);
   console.assert(thirdRow.length === 3, thirdRow.length);
-
   return (
     <div className="grid">
       <span className="grid__overlay" style={{ backgroundImage: `url(${frame})` }} />
@@ -124,6 +135,9 @@ function Grid({ tiles, onTileReveal, quote }) {
           {specialTile}
         </div>
         <QuoteSpace quote={quote} />
+        <div className="grid__row__lose-tile">
+          {loseTile}
+        </div>
       </div>
     </div>
   );
@@ -197,17 +211,24 @@ function App({ tiles, store, onTileReveal, quote, isCorrectId, playNewTicketSoun
     return () => store.offUpdate(fn);
   }, [store]);
 
-  const [imagesPreLoaded, setImagesPreLoaded] = useState('');
-  const isAllImagesPreloaded = imagesPreLoaded >= 2;
+  const [imagesPreLoaded, setImagesPreLoaded] = useState(0);
+  console.log('imagesPreLoaded', imagesPreLoaded);
+  const isAllImagesPreloaded = imagesPreLoaded >= 3;
 
   return (
     <div className="app">
 
       {/* Hack to display these before icons */}
       <img src={BRUSH_IMG_URL} style={{ display: 'none' }} onLoad={() => {
+        console.log('BRUSH_IMG_URL', BRUSH_IMG_URL);
         setImagesPreLoaded(imagesPreLoaded + 1);
       }} />
       <img src={OVERLAY_IMG_URL} style={{ display: 'none' }} onLoad={() => {
+        console.log('OVERLAY_IMG_URL', OVERLAY_IMG_URL);
+        setImagesPreLoaded(imagesPreLoaded + 1);
+      }} />
+      <img src={LOSE_OVERLAY_IMG_URL} style={{ display: 'none' }} onLoad={() => {
+        console.log('LOSE_OVERLAY_IMG_URL', LOSE_OVERLAY_IMG_URL);
         setImagesPreLoaded(imagesPreLoaded + 1);
       }} />
 
