@@ -32,14 +32,22 @@ export default class ScratchedStore {
   }
   
   _hasWon() {
-    return Object.values(this._state.scratchedTiles).includes(3);
+    return (
+      !this._hasLost() &&
+      Object.values(this._state.scratchedTiles).includes(3)
+    );
   }
   
   _hasLost() {
     return (
+      this._hasScratchedLosingTile() ||
       this._hasScratchedAll() &&
       !this._hasWon()
     );
+  }
+
+  _hasScratchedLosingTile() {
+    return !!this._state.scratchedTiles.cry;
   }
   
   _hasScratchedAll(){
