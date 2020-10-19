@@ -45,6 +45,7 @@ const iconMap = {
 
 const OVERLAY_IMG_URL = klaver;
 const BRUSH_IMG_URL = brush;
+const NEW_TICKET_TEXT = "Ny Pisslott!";
 
 function TicketMessage({ state, getTileWinDescription }) {
   let text = 'Keep scratchin\'';
@@ -154,11 +155,9 @@ function TicketIdBox({ isCorrectId }) {
 }
 
 function NewTicketButton({ state, playNewTicketSound }){
-  const buttonText = "Ny Pisslott!";
   const gameOver = state.hasWon || state.hasLost;
   // const revealButton = gameOver && state.hasPlayedFinalSound;
   const [isClicked, setIsClicked] = useState(false);
-  console.log("isClicked:", isClicked);
 
   function handleOnClick(e){
     setIsClicked(true);
@@ -176,10 +175,12 @@ function NewTicketButton({ state, playNewTicketSound }){
         type="button"
         onClick={handleOnClick}
         className={`new-ticket__button ${gameOver ? '' : 'hidden'}`}>
-          <span className="new-ticket__button__text">
-            {buttonText}
-          </span>
-          <div className={`loader ${isClicked ? '' : 'hidden'}`}/>
+          <div className="new-ticket__container">
+            <span className="new-ticket__button__text">
+              {NEW_TICKET_TEXT}
+            </span>
+            <div className={`loader ${isClicked ? '' : 'hidden'}`}/>
+          </div>
       </button>
       
     </div>
