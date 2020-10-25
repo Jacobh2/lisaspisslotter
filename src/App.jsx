@@ -17,7 +17,9 @@ import speech from './public/icons/speech.webp';
 import champagne from './public/icons/champagne.webp';
 import newTicket from './public/icons/new.webp';
 import vip from './public/icons/vip.webp';
-import cry from './public/icons/cry.webp'
+import cry from './public/icons/cry.webp';
+import hat from './public/icons/hat.webp';
+import karaoke from './public/icons/karaoke.webp';
 import multiply1 from './public/icons/multiply_1.webp';
 import multiply2 from './public/icons/multiply_2.webp';
 import multiply5 from './public/icons/multiply_5.webp';
@@ -44,6 +46,8 @@ const iconMap = {
   'multiply5': multiply5,
   'multiply10': multiply10,
   'cry': cry,
+  'karaoke': karaoke,
+  'hat': hat,
 };
 
 const overlays = {
@@ -98,8 +102,6 @@ function Tile({ tile, tileNr, onTileReveal }) {
 }
 
 function Grid({ tiles, onTileReveal, quote }) {
-  console.log("Tiles:", tiles);
-
   const tileItems = tiles.map((tile, i) => (
     <Tile
       key={i}
@@ -164,7 +166,7 @@ function TicketIdBox({ isCorrectId }) {
 
   return (
     <div className="ticket-id-box">
-      <input className="ticket-id-box__input" maxLength="6" type="text" placeholder="Ticket ID" onChange={handleChange}></input>
+      <input className="ticket-id-box__input" type="text" placeholder="Ticket ID" onChange={handleChange}></input>
     </div>
   );
 }
@@ -212,7 +214,6 @@ function App({ tiles, store, onTileReveal, quote, isCorrectId, playNewTicketSoun
   }, [store]);
 
   const [imagesPreLoaded, setImagesPreLoaded] = useState(0);
-  console.log('imagesPreLoaded', imagesPreLoaded);
   const isAllImagesPreloaded = imagesPreLoaded >= 3;
 
   return (
@@ -220,15 +221,12 @@ function App({ tiles, store, onTileReveal, quote, isCorrectId, playNewTicketSoun
 
       {/* Hack to display these before icons */}
       <img src={BRUSH_IMG_URL} style={{ display: 'none' }} onLoad={() => {
-        console.log('BRUSH_IMG_URL', BRUSH_IMG_URL);
         setImagesPreLoaded(imagesPreLoaded + 1);
       }} />
       <img src={OVERLAY_IMG_URL} style={{ display: 'none' }} onLoad={() => {
-        console.log('OVERLAY_IMG_URL', OVERLAY_IMG_URL);
         setImagesPreLoaded(imagesPreLoaded + 1);
       }} />
       <img src={LOSE_OVERLAY_IMG_URL} style={{ display: 'none' }} onLoad={() => {
-        console.log('LOSE_OVERLAY_IMG_URL', LOSE_OVERLAY_IMG_URL);
         setImagesPreLoaded(imagesPreLoaded + 1);
       }} />
 

@@ -1,5 +1,4 @@
 function getPrize({ scratchedTiles }) {
-  console.log("scratchedTiles:", scratchedTiles);
   const tileIds = Object.keys(scratchedTiles);
   const tileIdsWithThreeMatches = tileIds.filter(id => scratchedTiles[id] === 3);
   console.assert(tileIdsWithThreeMatches.length <= 1, scratchedTiles);
@@ -33,7 +32,7 @@ export default class ScratchedStore {
   
   _hasWon() {
     return (
-      !this._hasLost() &&
+      !this._hasPlayedLostSound &&
       Object.values(this._state.scratchedTiles).includes(3)
     );
   }
@@ -59,6 +58,8 @@ export default class ScratchedStore {
   }
   
   updateState(tileId, audioReference) {
+    console.log("this._state.numberOfScratchedTiles:", this._state.numberOfScratchedTiles);
+
     this._state.numberOfScratchedTiles++;
     
     // Add the scratched tile to the state
