@@ -32,7 +32,7 @@ export default class ScratchedStore {
   
   _hasWon() {
     return (
-      !this._hasPlayedLostSound &&
+      !this._hasScratchedLosingTile() &&
       Object.values(this._state.scratchedTiles).includes(3)
     );
   }
