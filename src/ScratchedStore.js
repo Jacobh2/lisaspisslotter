@@ -57,7 +57,7 @@ export default class ScratchedStore {
     return this._hasPlayedLostSound || this._hasPlayedWinSound;
   }
   
-  updateState(tileId, audioReference) {
+  updateState(tileId) {
     console.log("this._state.numberOfScratchedTiles:", this._state.numberOfScratchedTiles);
 
     this._state.numberOfScratchedTiles++;
@@ -73,27 +73,12 @@ export default class ScratchedStore {
     
     if (this._hasWon() && !this._state.winningSoundPlayed) {
       this._state.winningSoundPlayed = true;
-      audioReference.addEventListener("ended", () => {
-        audioReference.currentTime = 0;
-        const winSound = audioPlayer.playWin();
-        winSound.addEventListener("ended", () => {
-          winSound.currentTime = 0;
-          this._hasPlayedWinSound = true;
-          this._callbacks.forEach(fn => fn());
-        });
-      });
+      audioPlayer.queueWin();
     }
     
     if (this._hasLost()) {
-      audioReference.addEventListener("ended", () => {
-        audioReference.currentTime = 0;
-        const lostSound = audioPlayer.playLost();
-        lostSound.addEventListener("ended", () => {
-          lostSound.currentTime = 0;
-          this._hasPlayedLostSound = true;
-          this._callbacks.forEach(fn => fn());
-        });
-      });
+      audioPlayer.queueLost();
+      this._hasPlayedLostSound = true;
     }
 
     this._callbacks.forEach(fn => fn());
@@ -101,10 +86,12 @@ export default class ScratchedStore {
 
   onUpdate(fn) {
     this._callbacks.add(fn);
+    this.audioPlayer.onUpdate(fn);
   }
 
   offUpdate(fn) {
     this._callbacks.delete(fn);
+    this.audioPlayer.offUpdate(fn);
   }
 
   getState() {
@@ -114,6 +101,7 @@ export default class ScratchedStore {
       prize: getPrize(this._state),
       multiply: getMultiply(this._state),
       hasPlayedFinalSound: this._hasPlayedFinalSound(),
+      isAudioPlaying: this.audioPlayer.isPlaying()
     };
   }
 }

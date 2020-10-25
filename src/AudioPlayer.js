@@ -14,26 +14,60 @@ export default class AudioPlayer {
 
   constructor() {
     this._sounds = {
-      ohfan: new Audio(ohfan),
-      anton_skratt: new Audio(anton_skratt),
-      hamburgare_eller_baguette: new Audio(hamburgare_eller_baguette),
-      pest_eller_kolera: new Audio(pest_eller_kolera),
-      redbull: new Audio(redbull),
-      drivmedel_100_kr: new Audio(drivmedel_100_kr),
-      klipp_och_klistra: new Audio(klipp_och_klistra),
-      redan_samst: new Audio(redan_samst),
-      vinner_ingenting: new Audio(vinner_ingenting),
+      ohfan: this._registerAudio('ohfan', ohfan),
+      anton_skratt: this._registerAudio('anton_skratt', anton_skratt),
+      hamburgare_eller_baguette: this._registerAudio('hamburgare_eller_baguette', hamburgare_eller_baguette),
+      pest_eller_kolera: this._registerAudio('pest_eller_kolera', pest_eller_kolera),
+      redbull: this._registerAudio('redbull', redbull),
+      drivmedel_100_kr: this._registerAudio('drivmedel_100_kr', drivmedel_100_kr),
+      klipp_och_klistra: this._registerAudio('klipp_och_klistra', klipp_och_klistra),
+      redan_samst: this._registerAudio('redan_samst', redan_samst),
+      vinner_ingenting: this._registerAudio('vinner_ingenting', vinner_ingenting),
     };
 
-    this._winSound = new Audio(win);
-    this._newTicketSound = new Audio(ny_lott);
+    this._winSound = this._registerAudio('win', win);
+    this._newTicketSound = this._registerAudio('ny_lott', ny_lott);
+
+    this._state = {
+      playingAudios: new Set()
+    };
+
+    this._callbacks = new Set();
+  }
+
+  _registerAudio(id, input) {
+    const audio = new Audio(input);
+    audio.addEventListener('play', () => {
+      console.log('audio started', id);
+      this._state.playingAudios.add(id);
+      this._callbacks.forEach(fn => fn());
+    });
+    audio.addEventListener('ended', () => {
+      console.log('audio ended', id);
+      audio.currentTime = 0;
+      this._state.playingAudios.delete(id);
+      this._callbacks.forEach(fn => fn());
+    });
+
+    return audio;
+  }
+
+  onUpdate(fn) {
+    this._callbacks.add(fn);
+  }
+
+  offUpdate(fn) {
+    this._callbacks.delete(fn);
+  }
+
+  isPlaying() {
+    return this._state.playingAudios.size > 0;
   }
 
   playRandom() {
     const list = Object.values(this._sounds).sort(() => 0.5 - Math.random());
     const audio = list[0];
     audio.play();
-    return audio;
   }
 
   playById(id) {
@@ -52,18 +86,29 @@ export default class AudioPlayer {
         break;
     }
     sound.play();
-    return sound;
   }
 
-  playWin() {
-    return this.playById('win');
+  _queueAudio(audio) {
+    if (!this.isPlaying()) return audio.play();
+
+    const fn = () => {
+      if (this.isPlaying()) return;
+
+      audio.play();
+      this.offUpdate(fn);
+    };
+    this.onUpdate(fn);
   }
 
-  playLost() {
-    return this.playById('vinner_ingenting');
+  queueWin() {
+    this._queueAudio(this._winSound);
   }
 
-  playNewTicket() {
-    return this.playById('ny_lott');
+  queueLost() {
+    this._queueAudio(this._sounds.vinner_ingenting);
+  }
+
+  queueNewTicket() {
+    this._queueAudio(this._sounds.ny_lott);
   }
 }

@@ -12,6 +12,10 @@ body {
 }
 
 .ticket-message {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   width: 100%;
 
   padding: 15px;
@@ -20,6 +24,15 @@ body {
 
   background-color: #f5f5f550;
   border-bottom: 1px solid grey;
+}
+
+.ticket-message__audio {
+  opacity: 0.1;
+  font-size: 18px;
+}
+
+.ticket-message__audio--is-playing {
+  opacity: 1;
 }
 
 .quote-space {

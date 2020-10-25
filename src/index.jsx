@@ -22,8 +22,8 @@ const message = new Message();
 
 function onTileReveal({ tileId, tileNr, tileSound }) {
   console.log("Scratched tile", tileNr, tileId, "with sound", tileSound);
-  const audioReference = audioPlayer.playById(tileSound);
-  store.updateState(tileId, audioReference)
+  audioPlayer.playById(tileSound);
+  store.updateState(tileId);
 
   if (store._hasScratchedAll()) {
     // The game is finished!
@@ -46,7 +46,7 @@ function playNewTicketSound(){
 }
 
 function getTileWinDescription(prizeId, multiple){
-  return message.getText(prizeId, multiple)
+  return message.getText(prizeId, multiple);
 }
 
 if (!window.location.hash.startsWith('#ticket/')) {

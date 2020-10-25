@@ -69,6 +69,9 @@ function TicketMessage({ state, getTileWinDescription }) {
       <span className="ticket-message__text">
         {text}
       </span>
+      <span className={`ticket-message__audio ${state.isAudioPlaying ? 'ticket-message__audio--is-playing' : ''}`}>
+        🔈
+      </span>
     </div>
   );
 }
@@ -95,7 +98,7 @@ function Tile({ tile, tileNr, onTileReveal }) {
   return (
     <div ref={ref} className={`${tile.overlay ? 'grid__tile-big' : 'grid__tile'} grid__tile--${tileNr} ${isRevealed ? 'grid__tile--revealed' : ''}`}>
       <span className="grid__tile__content">
-        <span className={`grid__tile__content__icon`} style={{ backgroundImage: `url(${iconMap[tile.id]})` }}></span>
+        <span className={`grid__tile__content__icon`} style={{ backgroundImage: hasScratchIt ? `url(${iconMap[tile.id]})` : null }}></span>
       </span>
     </div>
   );
@@ -173,7 +176,7 @@ function TicketIdBox({ isCorrectId }) {
 
 function NewTicketButton({ state, playNewTicketSound }){
   const gameOver = state.hasWon || state.hasLost;
-  const revealButton = gameOver && state.hasPlayedFinalSound;
+  const revealButton = gameOver && !state.isAudioPlaying;
   const [isClicked, setIsClicked] = useState(false);
 
   function handleOnClick(e){
