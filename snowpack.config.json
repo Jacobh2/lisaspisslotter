@@ -1,6 +1,7 @@
 {
   "extends": "@snowpack/app-scripts-react",
   "plugins": [
-    "@snowpack/plugin-babel"
+    "@snowpack/plugin-babel",
+    "@snowpack/plugin-webpack"
   ]
 }
