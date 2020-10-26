@@ -29,7 +29,8 @@ export default class AudioPlayer {
     this._newTicketSound = this._registerAudio('ny_lott', ny_lott);
 
     this._state = {
-      playingAudios: new Set()
+      playingAudios: new Set(),
+      history: []
     };
 
     this._callbacks = new Set();
@@ -43,6 +44,7 @@ export default class AudioPlayer {
       this._callbacks.forEach(fn => fn());
     });
     audio.addEventListener('ended', () => {
+      this._state.history.push(id);
       console.log('audio ended', id);
       audio.currentTime = 0;
       this._state.playingAudios.delete(id);
@@ -62,6 +64,10 @@ export default class AudioPlayer {
 
   isPlaying() {
     return this._state.playingAudios.size > 0;
+  }
+
+  hasPlayedSound(id) {
+    return !!this._state.history.find(other => id === other);
   }
 
   playRandom() {
@@ -89,26 +95,38 @@ export default class AudioPlayer {
   }
 
   _queueAudio(audio) {
-    if (!this.isPlaying()) return audio.play();
+    return new Promise(resolve => {
+      const onEnded = () => {
+        audio.removeEventListener('ended', onEnded);
+        resolve();
+      };
 
-    const fn = () => {
-      if (this.isPlaying()) return;
+      const play = () => {
+        audio.addEventListener('ended', onEnded);
+        audio.play();
+      };
 
-      audio.play();
-      this.offUpdate(fn);
-    };
-    this.onUpdate(fn);
+      if (!this.isPlaying()) return play();
+  
+      const waitUntilSilent = () => {
+        if (this.isPlaying()) return;
+  
+        play();
+        this.offUpdate(waitUntilSilent);
+      };
+      this.onUpdate(waitUntilSilent);
+    });
   }
 
   queueWin() {
-    this._queueAudio(this._winSound);
+    return this._queueAudio(this._winSound);
   }
 
   queueLost() {
-    this._queueAudio(this._sounds.vinner_ingenting);
+    return this._queueAudio(this._sounds.vinner_ingenting);
   }
 
   queueNewTicket() {
-    this._queueAudio(this._sounds.ny_lott);
+    return this._queueAudio(this._newTicketSound);
   }
 }

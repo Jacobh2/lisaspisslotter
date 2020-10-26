@@ -54,7 +54,7 @@ export default class ScratchedStore {
   }
 
   _hasPlayedFinalSound(){
-    return this._hasPlayedLostSound || this._hasPlayedWinSound;
+    return this.audioPlayer.hasPlayedSound('') || this._hasPlayedWinSound;
   }
   
   updateState(tileId) {
@@ -72,13 +72,17 @@ export default class ScratchedStore {
     const audioPlayer = this.audioPlayer;
     
     if (this._hasWon() && !this._state.winningSoundPlayed) {
-      this._state.winningSoundPlayed = true;
-      audioPlayer.queueWin();
+      audioPlayer.queueWin().then(() => {
+        this._state.winningSoundPlayed = true;
+        this._callbacks.forEach(fn => fn());
+      });
     }
     
     if (this._hasLost()) {
-      audioPlayer.queueLost();
-      this._hasPlayedLostSound = true;
+      audioPlayer.queueLost().then(() => {
+        this._hasPlayedLostSound = true;
+        this._callbacks.forEach(fn => fn());
+      });
     }
 
     this._callbacks.forEach(fn => fn());

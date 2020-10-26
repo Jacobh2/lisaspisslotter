@@ -181,10 +181,7 @@ function NewTicketButton({ state, playNewTicketSound }){
 
   function handleOnClick(e){
     setIsClicked(true);
-    const audioReference = playNewTicketSound();
-    audioReference.addEventListener("ended", function(){
-      audioReference.currentTime = 0;
-      // When the sound is done, go to start page
+    playNewTicketSound().then(() => {
       window.location = "/";
     });
   }

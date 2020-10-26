@@ -42,7 +42,7 @@ function isCorrectId(id){
 }
 
 function playNewTicketSound(){
-  return audioPlayer.playNewTicket();
+  return audioPlayer.queueNewTicket();
 }
 
 function getTileWinDescription(prizeId, multiple){
