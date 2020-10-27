@@ -29,6 +29,7 @@ export default class Message {
       'burger': '🍔🍔🍔',
       'karaoke': '🎤🎙️🎤',
       'hat': '🍷🎩🍷',
+      'gift': '🎁🎁🎁',
     };
     this._iconEnd = {
       'champagne': '🥂🥂🥂',
@@ -42,6 +43,7 @@ export default class Message {
       'burger': '🍔🍔🍔',
       'karaoke': '🎤🎙️🎤',
       'hat': '🎩🍷🎩',
+      'gift': '🎁🎁🎁',
     };
     this._texts = {
       'champagne': new Text('Woho! Drink bubbles with Lisa!', 'Woho! Drink @ bubbles with Lisa!'),
@@ -55,6 +57,7 @@ export default class Message {
       'burger': new Text('Have some tasty snacks!', 'Have @ tasty snacks!'),
       'karaoke': new Text('Sing a Karaoke song!', 'Sing @ Karaoke songs during the night!'),
       'hat': new Text('You won the wine-hat!', 'You won the wine-hat!!'),
+      'gift': new Text('You won yourself a gift!', 'You won yourself a gift!'),
     };
   }
 
