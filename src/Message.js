@@ -53,7 +53,7 @@ export default class Message {
       'new': new Text('New ticket: Go to toastmasters to find out', '@ new tickets: Go to toastmasters to find out'),
       'wine': new Text('Congratz! Have some wine!', 'Congratz! Drink @ wineglases!!'),
       'burger': new Text('Have some tasty snacks!', 'Have @ tasty snacks!'),
-      'karaoke': new Text('Sing a Karaoke song with Lisa\'s dad!', 'Sing @ Karaoke songs during the night!'),
+      'karaoke': new Text('Sing a Karaoke song!', 'Sing @ Karaoke songs during the night!'),
       'hat': new Text('You won the wine-hat!', 'You won the wine-hat!!'),
     };
   }

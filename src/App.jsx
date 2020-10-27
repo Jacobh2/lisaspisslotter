@@ -20,6 +20,7 @@ import vip from './public/icons/vip.webp';
 import cry from './public/icons/cry.webp';
 import hat from './public/icons/hat.webp';
 import karaoke from './public/icons/karaoke.webp';
+import gift from './public/icons/gift.webp';
 import multiply1 from './public/icons/multiply_1.webp';
 import multiply2 from './public/icons/multiply_2.webp';
 import multiply5 from './public/icons/multiply_5.webp';
@@ -48,6 +49,7 @@ const iconMap = {
   'cry': cry,
   'karaoke': karaoke,
   'hat': hat,
+  'gift': gift
 };
 
 const overlays = {
@@ -204,7 +206,7 @@ function NewTicketButton({ state, playNewTicketSound }){
   );
 }
 
-function App({ tiles, store, onTileReveal, quote, isCorrectId, playNewTicketSound, getTileWinDescription }) {
+function App({ displayNewTicketId, tiles, store, onTileReveal, quote, isCorrectId, playNewTicketSound, getTileWinDescription }) {
   const [state, setState] = useState(store.getState());
 
   useEffect(() => {
@@ -233,7 +235,7 @@ function App({ tiles, store, onTileReveal, quote, isCorrectId, playNewTicketSoun
       <TicketMessage state={state} getTileWinDescription={getTileWinDescription} />
       {isAllImagesPreloaded && <Grid quote={quote} store={store} tiles={tiles} onTileReveal={onTileReveal} />}
       <NewTicketButton state={state} playNewTicketSound={playNewTicketSound} />
-      <TicketIdBox isCorrectId={isCorrectId} />
+      {displayNewTicketId && <TicketIdBox isCorrectId={isCorrectId} />}
     </div>
   );
 }

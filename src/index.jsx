@@ -52,14 +52,14 @@ function getTileWinDescription(prizeId, multiple){
 if (!window.location.hash.startsWith('#ticket/')) {
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} tiles={ticketGenerator.getRandomLosingGameBoard()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} playNewTicketSound={playNewTicketSound} getTileWinDescription={getTileWinDescription} />
+      <App displayNewTicketId={true} store={store} tiles={ticketGenerator.getRandomLosingGameBoard()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} playNewTicketSound={playNewTicketSound} getTileWinDescription={getTileWinDescription} />
     </React.StrictMode>,
     document.getElementById('root'),
   );
 } else {
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} tiles={ticketGenerator.getGameBoardByHash()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} playNewTicketSound={playNewTicketSound} getTileWinDescription={getTileWinDescription} />
+      <App displayNewTicketId={false} store={store} tiles={ticketGenerator.getGameBoardByHash()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} playNewTicketSound={playNewTicketSound} getTileWinDescription={getTileWinDescription} />
     </React.StrictMode>,
     document.getElementById('root'),
   );

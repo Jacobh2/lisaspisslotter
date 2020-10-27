@@ -58,7 +58,9 @@ The tile must exist as a .webp icon in public/icons
 - [x] Favourite Lisa quotes i nedre högra textfältet
 - [x] Field to enter a ticket ID directly on page
 - [x] When won/lost, button for new ticket, should play "ny_lott" sound
-- [ ] Add a speaker/sound icon in top right corner to show/inform that sound is playing
+- [☠️] Add a speaker/sound icon in top right corner to show/inform that sound is playing
+- [x] Remove anton skrattar
+- [x] Hide ticket id especially when it is given from URL/QR Code
 
 ## Backend
 - [x] Other way of handling winning IDs?
@@ -78,7 +80,7 @@ The tile must exist as a .webp icon in public/icons
 [x] Chrome on Windows
 [x] Chrome on Mac
 [x] Chrome on Android
-[ ] Chrome on iOS
+[x] Chrome on iOS
   - Problems, going to a winning ticket ID doesn't show the top
 [ ] Safari on Mac
   - Problems, inspecting shows that "Grid" isn't even loaded, something wrong with the 'isAllImagesPreloaded' hack?

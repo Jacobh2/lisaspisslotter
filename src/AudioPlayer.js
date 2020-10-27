@@ -1,5 +1,4 @@
 import ohfan from './public/sounds/ohfan.mp3';
-import anton_skratt from './public/sounds/anton_skratt.mp3';
 import hamburgare_eller_baguette from './public/sounds/hamburgare_eller_baguette.mp3';
 import ny_lott from './public/sounds/ny_lott.mp3';
 import pest_eller_kolera from './public/sounds/pest_eller_kolera.mp3';
@@ -15,7 +14,6 @@ export default class AudioPlayer {
   constructor() {
     this._sounds = {
       ohfan: new Audio(ohfan),
-      anton_skratt: new Audio(anton_skratt),
       hamburgare_eller_baguette: new Audio(hamburgare_eller_baguette),
       pest_eller_kolera: new Audio(pest_eller_kolera),
       redbull: new Audio(redbull),
