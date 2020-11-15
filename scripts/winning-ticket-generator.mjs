@@ -29,6 +29,8 @@ async function run() {
     const gameBoard = ticketGenerator._generateBoard(true, ticketGenerator.getTile(tile));
 
     console.log(JSON.stringify(gameBoard));
+    console.log("");
+    console.log("Copy paste this into the winning-ids dict in TicketGenerator.js!")
 }
 
 run();

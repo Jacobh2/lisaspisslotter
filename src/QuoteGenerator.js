@@ -2,6 +2,8 @@
 export default class QuoteGenerator {
 
   constructor() {
+    // Max length possible in the lower right
+    // white box given the font size
     this.MAX_LENGTH = 17;
     this._quotes = [
       "ååh faan",
@@ -10,7 +12,9 @@ export default class QuoteGenerator {
       "va äre för en dag",
       "lisa lisa lisa"
     ];
-    this._fixes = {
+    // Maps from padding length required
+    // to a set of paddings
+    this._padding = {
       1: ["1", "0"],
       2: ["-1", "-0"],
       3: ["-10", "-01"],
@@ -20,12 +24,12 @@ export default class QuoteGenerator {
     };
   }
 
-  _getRandom(array){
+  _getRandom(array) {
     return array.sort(() => 0.5 - Math.random())[0];
   }
 
-  _addFix(text, length, location){
-    const fix = this._getRandom(this._fixes[length]);
+  _addFix(text, length, location) {
+    const fix = this._getRandom(this._padding[length]);
     if (location == -1) {
       text += fix;
     } else {
@@ -38,14 +42,14 @@ export default class QuoteGenerator {
     /*
     Make sure that quotes are no longer than MAX_LENGTH
     characters as well as replace all spaces with dash.
-    If shorted than MAX_LENGTH characters, fill in with
+    If shorter than MAX_LENGTH characters, fill in with
     numbers to make it look like a real ticket
     */
     quote = quote.replace(/\s/g, '-');
     quote = quote.toUpperCase();
     const padLength = this.MAX_LENGTH - quote.length;
     const firstDashIndex = quote.indexOf("-");
-    switch (padLength){
+    switch (padLength) {
       case 9:
         // Split into 3 + 6
         quote = this._addFix(quote, 3, firstDashIndex);
@@ -70,7 +74,7 @@ export default class QuoteGenerator {
     return quote;
   }
 
-  get(){
+  get() {
     const quote = this._getRandom(this._quotes);
     return this._formatter(quote);
   }

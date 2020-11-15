@@ -58,8 +58,6 @@ export default class ScratchedStore {
   }
   
   updateState(tileId, audioReference) {
-    console.log("this._state.numberOfScratchedTiles:", this._state.numberOfScratchedTiles);
-
     this._state.numberOfScratchedTiles++;
     
     // Add the scratched tile to the state

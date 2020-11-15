@@ -22,11 +22,9 @@ See the section about running tests for more information.
 Builds a static copy of your site to the `build/` folder.
 Your app is ready to be deployed!
 
-**For the best production performance:** Add a build bundler plugin like "@snowpack/plugin-webpack" or "@snowpack/plugin-parcel" to your `snowpack.config.json` config file.
+### npm run release
 
-### Q: What about Eject?
-
-No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+Releases the last build to lisaspisslotter.se
 
 ### npm generate <tile>
 
@@ -36,59 +34,4 @@ The tile must exist as a .webp icon in public/icons
 
 ### Winning IDs:
 
-- `abc123` = beer
-- `def456` = beer2
-- `ghi789` = beer3
-- `jkl123` = wine
-- `mno456` = champagne
-
-# TODO
-
-## Frontend
-- [x] Start using icons instead of text in tiles
-- [x] Have start page / landing page
-  - Will always yield a losing ticket
-- [x] Winning / losing page
-- [x] Scratch also the "don't scratch this square" thing, and then trigger a instant lose
-- [x] Don't show icons until everything is loaded
-- [x] Change favicon
-- [x] Update HTML title
-- [x] All "events" should be recognized in the message bar
-- [x] Recognize hash events to make Jacob stfu
-- [x] Favourite Lisa quotes i nedre högra textfältet
-- [x] Field to enter a ticket ID directly on page
-- [x] When won/lost, button for new ticket, should play "ny_lott" sound
-- [☠️] Add a speaker/sound icon in top right corner to show/inform that sound is playing
-- [x] Remove anton skrattar
-- [x] Hide ticket id especially when it is given from URL/QR Code
-
-## Backend
-- [x] Other way of handling winning IDs?
-  - Be able to give a specific price
-- [x] Rename state to store
-- [x] Compress sounds to get better UX on phone/slower internet 
-- [x] Add cutout for "don't scratch this square" thing
-- [x] Create proper winning list
-  - Lots of beer
-  - VIP ticket
-  - Something with a hat
-- [x] Photo edit ticket to say correct years under 30
-- [x] Grafitti "P" over "Tr" in "Triss" 
-
-## Works on:
-[ ] Edge on Windows
-[x] Chrome on Windows
-[x] Chrome on Mac
-[x] Chrome on Android
-[x] Chrome on iOS
-  - Problems, going to a winning ticket ID doesn't show the top
-[ ] Safari on Mac
-  - Problems, inspecting shows that "Grid" isn't even loaded, something wrong with the 'isAllImagesPreloaded' hack?
-[ ] Safari on iOS
-  - Problem: Sounds on Grid not working, but "new ticket" gives sound
-  - Giving in a winning ID actually works!! :D 
-[ ] Internet (Samsung) on Android
-  - Does not load the page, only white page showing
-
---> Is this where Babel should come to use?
-
+- See list in `TicketGenerator.js`

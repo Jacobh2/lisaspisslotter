@@ -20,51 +20,46 @@ const store = new ScratchedStore(audioPlayer);
 const quoteGenerator = new QuoteGenerator();
 const message = new Message();
 
+// Should we generate a winning ticket or not
+const pathStartsWithTicketId = window.location.hash.startsWith('#ticket/');
+
 function onTileReveal({ tileId, tileNr, tileSound }) {
-  console.log("Scratched tile", tileNr, tileId, "with sound", tileSound);
   const audioReference = audioPlayer.playById(tileSound);
   store.updateState(tileId, audioReference)
-
-  if (store._hasScratchedAll()) {
-    // The game is finished!
-    if (store._hasWon()) {
-      //TODO: Show a winning display (React component)
-      console.log("Congratz!");
-    } else {
-      //TODO: Show a losing display (React component)
-      console.log("Too bad!");
-    }
-  }
 }
 
-function isCorrectId(id){
+function isCorrectId(id) {
   return ticketGenerator.isCorrectId(id);
 }
 
-function playNewTicketSound(){
+function playNewTicketSound() {
   return audioPlayer.playNewTicket();
 }
 
-function getTileWinDescription(prizeId, multiple){
+function getTileWinDescription(prizeId, multiple) {
   return message.getText(prizeId, multiple)
 }
 
-if (!window.location.hash.startsWith('#ticket/')) {
-  ReactDOM.render(
-    <React.StrictMode>
-      <App displayNewTicketId={true} store={store} tiles={ticketGenerator.getRandomLosingGameBoard()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} playNewTicketSound={playNewTicketSound} getTileWinDescription={getTileWinDescription} />
-    </React.StrictMode>,
-    document.getElementById('root'),
-  );
-} else {
-  ReactDOM.render(
-    <React.StrictMode>
-      <App displayNewTicketId={false} store={store} tiles={ticketGenerator.getGameBoardByHash()} onTileReveal={onTileReveal} quote={quoteGenerator.get()} isCorrectId={isCorrectId} playNewTicketSound={playNewTicketSound} getTileWinDescription={getTileWinDescription} />
-    </React.StrictMode>,
-    document.getElementById('root'),
-  );
-}
+// Only show 'ticket id' box if we do not already have a winning board
+const displayNewTicketId = !pathStartsWithTicketId;
+// Generate the winning board given the ticket id if given
+const tiles = pathStartsWithTicketId ? ticketGenerator.getGameBoardByHash() : ticketGenerator.getRandomLosingGameBoard();
 
+ReactDOM.render(
+  <React.StrictMode>
+    <App 
+      displayNewTicketId={displayNewTicketId}
+      store={store}
+      tiles={tiles}
+      onTileReveal={onTileReveal}
+      quote={quoteGenerator.get()}
+      isCorrectId={isCorrectId}
+      playNewTicketSound={playNewTicketSound}
+      getTileWinDescription={getTileWinDescription}
+      />
+  </React.StrictMode>,
+  document.getElementById('root'),
+);
 
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
